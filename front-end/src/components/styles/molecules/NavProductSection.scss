@@ -1,0 +1,28 @@
+.navbar-section {
+  display: flex;
+  flex-direction: row;
+
+  .box {
+    height: 40px;
+    padding: 0 30px;
+    padding: display;
+    line-height: 40px;
+    overflow: hidden;
+    font-size: 16px;
+    color: #1a1a1a;
+  }
+
+  .box:hover {
+    background-color: grey;
+  }
+
+  .image {
+    width: 400px;
+    height: 200px;
+    margin-left: 20px;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

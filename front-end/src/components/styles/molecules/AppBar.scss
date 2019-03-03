@@ -1,0 +1,21 @@
+.nav-bar {
+  position: relative;
+  height: 64px;
+  z-index: 99;
+  .navbar-element {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .slider-element {
+    // margin: 10px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // position: absolute;
+    // top: 200px;
+    // background-color: grey;
+    border-bottom: 2px solid black;
+    z-index: -1;
+  }
+}
