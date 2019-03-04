@@ -33,6 +33,8 @@ export default class Example extends React.Component {
     }
   }
   render() {
+    console.log("this.props.items");
+    console.log(this.props.items);
     return (
       <div style={{ width: "80%" }}>
         <link
@@ -43,59 +45,33 @@ export default class Example extends React.Component {
         />
 
         <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === "1" })}
-              onClick={() => {
-                this.toggle("1");
-              }}
-            >
-              Tab1
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === "2" })}
-              onClick={() => {
-                this.toggle("2");
-              }}
-            >
-              Moar Tabs
-            </NavLink>
-          </NavItem>
+          {this.props.items.map((item, index) => (
+            <NavItem>
+              <NavLink
+                className={classnames({
+                  active: this.state.activeTab === `${index}`
+                })}
+                onClick={() => {
+                  this.toggle(`${index}`);
+                }}
+              >
+                {item.title}
+              </NavLink>
+            </NavItem>
+          ))}
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId="1">
-            <Row>
-              <Col sm="12">
-                <h4>Tab 1 Contents</h4>
-              </Col>
-            </Row>
-          </TabPane>
-          <TabPane tabId="2">
-            <Row>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
-            </Row>
-          </TabPane>
+          {this.props.items.map((item, index) => (
+            <>
+              <TabPane tabId={`${index}`}>
+                <Row>
+                  <div style={{ padding: "40px 40px 40px 40px " }}>
+                    {item.inside}
+                  </div>
+                </Row>
+              </TabPane>
+            </>
+          ))}
         </TabContent>
       </div>
     );

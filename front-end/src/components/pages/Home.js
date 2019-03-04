@@ -61,7 +61,7 @@ export default class HomePage extends Component {
             your requirements.
           </p>
         </div>
-        <div className="about-us">
+        {/* <div className="about-us">
           <h4>About Us </h4>
           <p>
             CUSTOMIZED FOR YOU As a leader in the industry, Led Signs Pte Ltd
@@ -84,7 +84,7 @@ export default class HomePage extends Component {
             technologies and a highly qualified team, we guarantee complete
             satisfaction.
           </p>
-        </div>
+        </div> */}
 
         {this.state.categories ? (
           <Gallery width="60%" numberPerPage={8} data={this.state.categories} />

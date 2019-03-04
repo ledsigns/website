@@ -4,7 +4,28 @@ import ProductView from "../organisms/ProductView";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import { getProduct } from "../../api/product";
+import RelevantCarousel from "../molecules/RelevantCarousel";
+const items = [
+  {
+    title: "Product Detail",
+    inside: <p>Product Detail</p>
+  },
+  {
+    title: "Parameters",
+    inside: <p>Parameters</p>
+  },
+  {
+    title: "Case Study",
+    inside: <p>Case Study</p>
+  }
+];
 
+const carouselData = [
+  { caption: "Product 1", url: "/" },
+  { caption: "Product 2", url: "/" },
+  { caption: "Product 3", url: "/" },
+  { caption: "Product 4", url: "/" }
+];
 export default class ProductPage extends Component {
   state = {
     productDetail: null
@@ -17,6 +38,12 @@ export default class ProductPage extends Component {
     });
   }
   render() {
+    const carouselElements = [
+      {
+        img:
+          "https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+      }
+    ];
     return (
       <>
         <div
@@ -24,7 +51,8 @@ export default class ProductPage extends Component {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            marginTop: "40px"
+            marginTop: "40px",
+            paddingBottom: "40px"
             // verticalAlign: "middle",
             // alignItems: "center"
           }}
@@ -53,11 +81,14 @@ export default class ProductPage extends Component {
                     <ProductView productDetail={this.state.productDetail} />
                   </div>
 
-                  <TabNav />
+                  <TabNav items={items} />
                 </div>
               ) : (
                 <CircularProgress />
               )}
+            </div>
+            <div style={{ marginBottom: "50px" }}>
+              <RelevantCarousel items={carouselData} />
             </div>
           </Paper>
         </div>
