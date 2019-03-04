@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import Tooltip from '@material-ui/core/Tooltip';
 
 export default class Hover extends Component {
   render() {
@@ -17,9 +18,11 @@ export default class Hover extends Component {
           height: "100%"
         }}
       >
-        <Fab color="primary" aria-label="Add">
-          <AddIcon />
-        </Fab>
+        <Tooltip title="Add" placement="left">
+          <Fab color="primary" aria-label="Add">
+            <AddIcon />
+          </Fab>
+        </Tooltip>
       </div>
     );
   }
