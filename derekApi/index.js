@@ -11,7 +11,7 @@ require("./db/dbInit");
 // Create server
 const server = express();
 
-server.use(function(req, res, next) {
+server.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -26,6 +26,7 @@ const productRouter = require("./routes/product");
 const vendorRouter = require("./routes/vendor");
 const categoryRouter = require("./routes/category");
 const productDetailRouter = require("./routes/productDetail");
+const homePage = require("./routes/homePage");
 
 //server side routers
 server.use("/test", testRouter);
@@ -33,6 +34,7 @@ server.use("/product", productRouter);
 server.use("/vendor", vendorRouter);
 server.use("/category", categoryRouter);
 server.use("/productDetail", productDetailRouter);
+server.use("/homePage", homePage);
 
 // Handle errors by returning JSON
 server.use((error, req, res, next) => {

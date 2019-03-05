@@ -33,11 +33,11 @@ router
 
     for (var i = 0; i < 5; i++) {
       let category = await global.Category.create({
-        name: `lvl2 Category ${i}`,
-        description: `all the category ${i} stuff here`,
+        name: `lvl2 Category ${i + 1}`,
+        description: `all the category ${i + 1} stuff here`,
         categoryLogo: {
           link: `sampleData/category/${categoryImages[i]}`,
-          description: `category${i}Logo`
+          description: `category${i + 1}Logo`
         },
         favorability: i
       });
@@ -51,12 +51,12 @@ router
 
     for (var i = 0; i < 9; i++) {
       let vendor = await global.Vendor.create({
-        name: `vendor${i}`,
-        websiteURL: `www.vendor${i}.com`,
+        name: `vendor${i + 1}`,
+        websiteURL: `www.vendor${i + 1}.com`,
         vendorLogo: [
           {
             link: `sampleData/vendor/${vendorImages[i]}`,
-            description: `smthing about vendor${i}`
+            description: `smthing about vendor${i + 1}`
           }
         ],
         favorability: i
@@ -68,8 +68,8 @@ router
     //add dummy products with no fk
     for (var i = 0; i < 22; i++) {
       let product = await global.Product.create({
-        name: `product ${i}`,
-        description: `smth about product ${i}`,
+        name: `product ${i + 1}`,
+        description: `smth about product ${i + 1}`,
         favorability: i
       });
       console.log(`product` + product);
@@ -106,17 +106,17 @@ router
         images: [
           {
             link: fileNameArray[i],
-            description: `product ${i} image`
+            description: `product ${i + 1} image`
           }
         ],
-        productIntro: `this is about product ${i}`,
-        specs: `product ${i} specs`,
+        productIntro: `this is about product ${i + 1}`,
+        specs: `product ${i + 1} specs`,
         showCase: [
           {
             link1: fileNameArray[i],
             link2: fileNameArray[i],
             link3: fileNameArray[i],
-            description: `product ${i} showcase`
+            description: `product ${i + 1} showcase`
           }
         ]
       });
