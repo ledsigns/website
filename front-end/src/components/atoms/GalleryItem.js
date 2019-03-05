@@ -7,7 +7,7 @@ export default function GalleryItem(src, caption, url, height, width) {
     width = "240px";
   }
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
