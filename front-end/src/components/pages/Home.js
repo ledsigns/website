@@ -87,7 +87,7 @@ export default class HomePage extends Component {
         </div> */}
 
         {this.state.categories ? (
-          <Gallery width="60%" numberPerPage={8} data={this.state.categories} />
+          <Gallery width="70%" numberPerPage={8} data={this.state.categories} />
         ) : (
           false
         )}

@@ -8,15 +8,18 @@ export default class HomePage extends Component {
   };
 
   async componentDidMount() {
-    let vendorId = this.props.match.params.id;
-    let vendors = await getVendorByCat(vendorId);
+    let categoryId = this.props.match.params.id;
+    let vendors = await getVendorByCat(categoryId);
     let galleryVendor = vendors.vendors.map(element => {
+      console.log("element");
+      console.log(element);
       return {
         caption: element.name,
-        url:
-          "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg"
+        url: `/category/${categoryId}/vendor/${element._id}`
       };
     });
+    console.log("vendors.vendors");
+    console.log(vendors.vendors);
     this.setState({ vendors: galleryVendor });
   }
 

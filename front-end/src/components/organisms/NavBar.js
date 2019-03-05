@@ -99,33 +99,33 @@ class NavSection extends Component {
               {show ? (
                 <>
                   <ItemsCarousel numberOfCards={1} activeItemIndex={index}>
-                    <Paper className={styles.paper} elevation={1}>
-                      <div>
-                        <div className="slider-element">
-                          <div className="slider-nested">
-                            <h2>hai</h2>
-                          </div>
+                    {/* <Paper className={styles.paper} elevation={1}> */}
+                    <div style={{ backgroundColor: "white" }}>
+                      <div className="slider-element">
+                        <div className="slider-nested">
+                          <h2>hai</h2>
                         </div>
                       </div>
-                    </Paper>
-                    <Paper className={styles.paper} elevation={1}>
-                      <div>
-                        <div className="slider-element">
-                          <div className="slider-nested">
-                            <NavProductSection />
-                          </div>
+                    </div>
+                    {/* </Paper> */}
+                    {/* <Paper className={styles.paper} elevation={1}> */}
+                    <div style={{ backgroundColor: "white" }}>
+                      <div className="slider-element">
+                        <div className="slider-nested">
+                          <NavProductSection />
                         </div>
                       </div>
-                    </Paper>
-                    <Paper className={styles.paper} elevation={1}>
-                      <div>
-                        <div className="slider-element">
-                          <div className="slider-nested">
-                            <h2>Sup</h2>
-                          </div>
+                    </div>
+                    {/* </Paper> */}
+                    {/* <Paper className={styles.paper} elevation={1}> */}
+                    <div style={{ backgroundColor: "white" }}>
+                      <div className="slider-element">
+                        <div className="slider-nested">
+                          <h2>Sup</h2>
                         </div>
                       </div>
-                    </Paper>
+                    </div>
+                    {/* </Paper> */}
                   </ItemsCarousel>
                 </>
               ) : (

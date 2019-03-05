@@ -17,6 +17,8 @@ const elements = [
 ];
 export default class Product extends Component {
   render() {
+    console.log("this.props.productDetail");
+    console.log(this.props.productDetail);
     const details = this.props.productDetail;
     return (
       <div
@@ -49,10 +51,8 @@ export default class Product extends Component {
             />
           </div>
           <div style={{ marginLeft: "30px", width: "40%" }}>
-            <h1>asdf</h1>
-            <h1>asdf</h1>
-            <h1>asdf</h1>
-            <h1>asdf</h1>
+            <h5>{details.name}</h5>
+            <p>{details.description}</p>
           </div>
         </div>
       </div>

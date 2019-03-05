@@ -5,8 +5,10 @@ import TestPage from "./components/pages/Test";
 import HomePage from "./components/pages/Home";
 // import CategoryVendorPage from "./components/pages/CategoryVendorPage";
 import CategoryPage from "./components/pages/Category";
-import ProductPage from "./components/pages/ProductPage";
+import ProductsPage from "./components/pages/Products";
+import ProductPage from "./components/pages/Product";
 import HoverButton from "./components/molecules/Hover";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./main.scss";
 
@@ -25,6 +27,11 @@ class App extends Component {
             {/* <Route exact path="/category/:id/vendor/:vendorId" component={CategoryPage} /> */}
             <Route exact path="/test" component={TestPage} />
             <Route exact path="/product/:id" component={ProductPage} />
+            <Route
+              exact
+              path="/category/:categorId/vendor/:vendorId"
+              component={ProductsPage}
+            />
           </Switch>
         </Router>
       </div>
