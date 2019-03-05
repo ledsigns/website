@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Phone from '@material-ui/icons/Phone';
 import Email from '@material-ui/icons/Email';
-// import Location_on from '@material-ui/icons/location_on'; wtf cannot find location_on?
+import Location_on from '@material-ui/icons/LocationOn';
+import '../styles/molecules/Hover.scss';
 
 function arrowGenerator(color) {
   return {
@@ -73,6 +74,7 @@ class Hover extends Component {
 
   state = {
     arrowRef: null,
+    style: { backgroundColor: '#3f51b5' }
   };
 
   handleArrowRef = node => {
@@ -81,7 +83,15 @@ class Hover extends Component {
     });
   };
 
+  handleHover(hoverStyle) {
+    this.setState({
+      style: hoverStyle
+    })
+  }
+
+
   render() {
+
     const { classes } = this.props;
     return (
       <div
@@ -119,19 +129,24 @@ class Hover extends Component {
             },
           }}
           title={
-            <React.Fragment>
-              <Phone />+86 6748 4917<br /><br />
-              <Email />sales@ledsigns.com<br /><br />
-              {/* <Location_on /> */}
-              Premier @ 8 Kaki Bukit Ave 4 #03-22, Singapore 415875
-            </React.Fragment>
+            <>
+              <div style={{ display: 'flex', flexDirection: 'row' }}><Phone /><p>+86 6748 4917</p><br /><br /></div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}><Email /><p>sales@ledsigns.com</p><br /><br /></div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}><Location_on /><p>Premier @ 8 Kaki Bukit Ave 4 #03-22, Singapore 415875</p> <br /> <br /></div>
+            </>
           }
         >
-          <Fab color="primary" aria-label="Add">
+          <Fab
+            onMouseEnter={() => { this.handleHover({ backgroundColor: '	#33cc33' }) }}
+            // color='primary'
+            onMouseLeave={() => { this.handleHover({ backgroundColor: '#3f51b5' }) }}
+            style={this.state.style}
+            aria-label="Add"
+            className="onHover">
             <Phone />
           </Fab>
-        </Tooltip>
-      </div>
+        </Tooltip >
+      </div >
     );
   }
 }
