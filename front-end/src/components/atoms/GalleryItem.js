@@ -28,7 +28,7 @@ export default function GalleryItem(src, caption, url, height, width) {
         <a class="lightbox" href={url}>
           <div
             style={{
-              backgroundImage: `url(${src})`,
+              backgroundImage: `url(${src})`, //where give the next links
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center center",
               backgroundSize: "cover",

@@ -9,13 +9,14 @@ export default class HomePage extends Component {
 
   async componentDidMount() {
     let categoryId = this.props.match.params.id;
+    console.log(`categoryId is +` + categoryId)
     let vendors = await getVendorByCat(categoryId);
     let galleryVendor = vendors.vendors.map(element => {
       console.log("element");
       console.log(element);
       return {
         caption: element.name,
-        url: `/category/${categoryId}/vendor/${element._id}`
+        url: `/vendor/${element._id}` // where generate the url for next page
       };
     });
     console.log("vendors.vendors");

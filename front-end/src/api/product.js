@@ -8,8 +8,8 @@ export function getProduct(id) {
   });
 }
 
-export function getRelevantProduct(vendorId, categoryId) {
-  return api.get(`/vendor/${vendorId}/category/${categoryId}`).then(res => {
+export function getProductByVendor(vendorId) {
+  return api.get(`product/vendor/${vendorId}`).then(res => {
     if (res) {
       return res.data;
     }

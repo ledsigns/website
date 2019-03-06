@@ -1,36 +1,36 @@
 import React, { Component } from "react";
 import "../styles/pages/Home.scss";
 import Gallery from "../atoms/Gallery";
-import { getRelevantProduct } from "../../api/product";
+import { getProductByVendor } from "../../api/product";
 export default class HomePage extends Component {
   state = {
-    vendors: null
+    products: null
   };
 
   async componentDidMount() {
-    let categoryId = this.props.match.params.vendor
-    console.log(`categoryId is ` + categoryId)
-    let vendors = await getRelevantProduct(categoryId);
-    let galleryVendor = vendors.vendors.map(element => {
+    let vendorId = this.props.match.params.vendorId;
+    console.log(`vendorId= ${vendorId}`)
+    let products = await getProductByVendor(vendorId);
+    console.log(`products =` + JSON.stringify(products))
+    let galleryProduct = products.products.map(element => {
       console.log("element");
       console.log(element);
       return {
         caption: element.name,
-        url: `/category/${categoryId}/vendor/${element._id}`
+        url: `/vendor/${element._id}`
       };
     });
-    console.log("vendors.vendors");
-    console.log(vendors.vendors);
-    this.setState({ vendors: galleryVendor });
+    console.log("products.products");
+    console.log(products.products);
+    this.setState({ products: galleryProduct });
   }
 
   render() {
-
-    console.log(this.state.vendors);
+    console.log(this.state.products);
     return (
       <>
-        {this.state.vendors ? (
-          <Gallery numberPerPage={10} width="90%" data={this.state.vendors} />
+        {this.state.products ? (
+          <Gallery numberPerPage={10} width="90%" data={this.state.products} />
         ) : (
             false
           )}

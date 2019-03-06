@@ -42,15 +42,13 @@ router.get("/:id", async (req, res) => {
   });
 });
 
-router.get("/vendor/:vendorId/category/:categoryId", async (req, res) => {
+router.get("/vendor/:vendorId", async (req, res) => {
 
   console.log(`vendorId` + req.params.vendorId)
-  console.log(`categoryId` + req.params.categoryId)
 
   let vendorId = req.params.vendorId
-  let categoryId = req.params.categoryId
 
-  let products = await global.Product.find({ $and: [{ vendor: vendorId }, { category: categoryId }] }).populate('productDetail')
+  let products = await global.Product.find({ vendor: vendorId }).populate('productDetail')
 
   res.json({
     products: products
