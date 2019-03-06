@@ -206,14 +206,13 @@ router
     for (var i = 0; i < productDetail.length - 1; i++) {
       console.log(product.length);
       for (var q = 0; q < manySide; q++) {
-        let randomIndex = Math.floor(Math.random() * product.length);
-        let randomProductId = product[randomIndex]._id;
+        let productId = product[q]._id;
         let productDetailId = productDetail[i]._id;
         await global.Product.updateOne(
-          { _id: Object(randomProductId) },
+          { _id: Object(productId) },
           { $set: { productDetail: productDetailId } }
         );
-        product.splice(randomIndex, 1);
+        product.splice(q, 1);
       }
     }
 

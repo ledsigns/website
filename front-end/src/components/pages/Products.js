@@ -17,7 +17,7 @@ export default class HomePage extends Component {
       console.log(element);
       return {
         caption: element.name,
-        url: `/vendor/${element._id}`
+        url: `/product/${element._id}`
       };
     });
     console.log("products.products");
