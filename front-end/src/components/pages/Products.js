@@ -1,26 +1,39 @@
 import React, { Component } from "react";
-export default class ProductPage extends Component {
-  // state = {
-  //   productDetail: null
-  // };
-  // async componentDidMount() {
-  //   let newProductDetail = await getProduct(this.props.match.params.id);
-  //   console.log(newProductDetail.productDetail[0]);
-  //   this.setState({
-  //     productDetail: newProductDetail.productDetail[0]
-  //   });
-  // }
+import "../styles/pages/Home.scss";
+import Gallery from "../atoms/Gallery";
+import { getRelevantProduct } from "../../api/product";
+export default class HomePage extends Component {
+  state = {
+    vendors: null
+  };
+
+  async componentDidMount() {
+    let categoryId = this.props.match.params.vendor
+    console.log(`categoryId is ` + categoryId)
+    let vendors = await getRelevantProduct(categoryId);
+    let galleryVendor = vendors.vendors.map(element => {
+      console.log("element");
+      console.log(element);
+      return {
+        caption: element.name,
+        url: `/category/${categoryId}/vendor/${element._id}`
+      };
+    });
+    console.log("vendors.vendors");
+    console.log(vendors.vendors);
+    this.setState({ vendors: galleryVendor });
+  }
+
   render() {
+
+    console.log(this.state.vendors);
     return (
       <>
-        <h1>Testingg</h1>
-        <h1>Testingg</h1>
-        <h1>Testingg</h1>
-        <h1>Testingg</h1>
-        <h1>Testingg</h1>
-        <h1>Testingg</h1>
-        <h1>Testingg</h1>
-        <h1>Testingg</h1>
+        {this.state.vendors ? (
+          <Gallery numberPerPage={10} width="90%" data={this.state.vendors} />
+        ) : (
+            false
+          )}
       </>
     );
   }

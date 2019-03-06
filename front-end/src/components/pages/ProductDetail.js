@@ -84,8 +84,8 @@ export default class ProductPage extends Component {
                   <TabNav items={items} />
                 </div>
               ) : (
-                <CircularProgress />
-              )}
+                  <CircularProgress />
+                )}
             </div>
             <div style={{ marginBottom: "50px" }}>
               <RelevantCarousel items={carouselData} />

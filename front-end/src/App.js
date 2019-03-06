@@ -3,10 +3,9 @@ import "./App.css";
 import NavBar from "./components/organisms/NavBar";
 import TestPage from "./components/pages/Test";
 import HomePage from "./components/pages/Home";
-// import CategoryVendorPage from "./components/pages/CategoryVendorPage";
-import CategoryPage from "./components/pages/Category";
+import VendorsPage from "./components/pages/Vendors";
 import ProductsPage from "./components/pages/Products";
-import ProductPage from "./components/pages/Product";
+import ProductDetailPage from "./components/pages/ProductDetail";
 import HoverButton from "./components/molecules/Hover";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -23,10 +22,9 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/category/:id" component={CategoryPage} />
-            {/* <Route exact path="/category/:id/vendor/:vendorId" component={CategoryPage} /> */}
+            <Route exact path="/category/:id" component={VendorsPage} />
             <Route exact path="/test" component={TestPage} />
-            <Route exact path="/product/:id" component={ProductPage} />
+            <Route exact path="/product/:id" component={ProductDetailPage} />
             <Route
               exact
               path="/category/:categorId/vendor/:vendorId"

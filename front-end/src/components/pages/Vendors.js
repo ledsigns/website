@@ -30,8 +30,8 @@ export default class HomePage extends Component {
         {this.state.vendors ? (
           <Gallery numberPerPage={10} width="90%" data={this.state.vendors} />
         ) : (
-          false
-        )}
+            false
+          )}
       </>
     );
   }

@@ -52,7 +52,7 @@ export default class Gallery extends Component {
     let arrayToDisplay, numberOfPages;
     [arrayToDisplay, numberOfPages] = this.pageSorter();
     let data = this.props.data;
-
+    console.log(`data is +` + JSON.stringify(data))
     return (
       <>
         <div style={{ height: "60vh", display: "block", width: "100vw" }}>

@@ -24,6 +24,7 @@ export default class HomePage extends Component {
       return { caption: element.name, url: `/category/${element._id}` };
     });
     this.setState({ categories: alteredData });
+    console.log(`updated state is ` + JSON.stringify(this.state.categories))
   }
 
   render() {
@@ -89,8 +90,8 @@ export default class HomePage extends Component {
         {this.state.categories ? (
           <Gallery width="70%" numberPerPage={8} data={this.state.categories} />
         ) : (
-          false
-        )}
+            false
+          )}
       </div>
     );
   }
