@@ -31,16 +31,18 @@ router
     let categoryImages = fs.readdirSync(categoryDirBuf);
     console.log(categoryImages);
 
+    let categoryArray = [];
     for (var i = 0; i < 5; i++) {
       let category = await global.Category.create({
         name: `lvl2 Category ${i + 1}`,
         description: `all the category ${i + 1} stuff here`,
         categoryLogo: {
-          link: `sampleData/category/${categoryImages[i]}`,
+          link: `https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/category/${categoryImages[i]}`,
           description: `category${i + 1}Logo`
         },
         favorability: i
       });
+      categoryArray.push(category.categoryLogo[0].link)
     }
 
     //add dummy vendors
@@ -49,18 +51,20 @@ router
     let vendorImages = fs.readdirSync(vendorDirBuf);
     console.log(vendorImages);
 
+    let vendorArray = []
     for (var i = 0; i < 9; i++) {
       let vendor = await global.Vendor.create({
         name: `vendor${i + 1}`,
         websiteURL: `www.vendor${i + 1}.com`,
         vendorLogo: [
           {
-            link: `sampleData/vendor/${vendorImages[i]}`,
+            link: `https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/vendor/${vendorImages[i]}`,
             description: `smthing about vendor${i + 1}`
           }
         ],
         favorability: i
       });
+      vendorArray.push(vendor.vendorLogo[0].link)
     }
 
     console.log("smthing running 1");
@@ -92,14 +96,12 @@ router
       let productDirBuf = Buffer.from(dirArray[i]);
       let productImages = fs.readdirSync(productDirBuf);
       for (var q = 0; q < productImages.length; q++) {
-        fileNameArray.push(dirArray[i] + "/" + productImages[q]);
+        fileNameArray.push("https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/product/" + dirArray[i].slice(19, dirArray[i].length) + "/" + productImages[q]);
       }
     }
 
     console.log(`fileNameArray` + fileNameArray);
     console.log(`fileNameArray Length` + fileNameArray.length);
-
-    res.json(fileNameArray);
 
     for (var i = 0; i < 22; i++) {
       let product = await global.ProductDetail.create({
@@ -123,6 +125,12 @@ router
     }
     console.log("smthing running 3");
     // res.send("Task finished!");
+
+    res.json({
+      categoryArray: categoryArray,
+      vendorArray: vendorArray,
+      fileNameArray: fileNameArray
+    });
   })
 
   .get("/setup", async (req, res) => {
