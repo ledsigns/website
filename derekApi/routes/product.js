@@ -42,6 +42,7 @@ router.get("/:id", async (req, res) => {
   });
 });
 
+//for get products by vendorId
 router.get("/vendor/:vendorId", async (req, res) => {
 
   console.log(`vendorId` + req.params.vendorId)
@@ -49,6 +50,23 @@ router.get("/vendor/:vendorId", async (req, res) => {
   let vendorId = req.params.vendorId
 
   let products = await global.Product.find({ vendor: vendorId }).populate('productDetail')
+
+  res.json({
+    products: products
+  });
+});
+
+
+//for get products by both categoryId and vendorId
+router.get("/category/:categoryId/vendor/:vendorId", async (req, res) => {
+
+  console.log(`vendorId` + req.params.vendorId)
+  console.log(`categoryId` + req.params.categoryId)
+
+  let vendorId = req.params.vendorId
+  let categoryId = req.params.categoryId
+
+  let products = await global.Product.find({ $and: [{ vendor: vendorId }, { category: categoryId }] }).populate('productDetail')
 
   res.json({
     products: products
