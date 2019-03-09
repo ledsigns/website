@@ -85,7 +85,7 @@ router
 
     //add dummy productDetail
     let dirArray = [
-      "sampleData/product/Indoor+Fixed+LED+Display", //s3 path doesn't read ' '
+      "sampleData/product/Indoor+Fixed+LED+Display", //s3 path doesn't read ' ' nor '()'
       "sampleData/product/LED+Components",
       "sampleData/product/LEDMAN+COB+Display",
       "sampleData/product/Outdoor+Fixed+LED+Display",
