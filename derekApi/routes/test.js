@@ -32,7 +32,7 @@ router
     console.log(categoryImages);
 
     let categoryArray = [];
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 30; i++) {
       let category = await global.Category.create({
         name: `lvl2 Category ${i + 1}`,
         description: `all the category ${i + 1} stuff here`,
@@ -42,6 +42,7 @@ router
         },
         favorability: i
       });
+      console.log(`category : ` + category)
       categoryArray.push(category.categoryLogo[0].link)
     }
 
@@ -52,7 +53,7 @@ router
     console.log(vendorImages);
 
     let vendorArray = []
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 60; i++) {
       let vendor = await global.Vendor.create({
         name: `vendor${i + 1}`,
         websiteURL: `www.vendor${i + 1}.com`,
@@ -62,19 +63,20 @@ router
             description: `smthing about vendor${i + 1}`
           }
         ],
-        favorability: i
+        favorability: i + 1
       });
+      console.log(`vendor : ` + vendor)
       vendorArray.push(vendor.vendorLogo[0].link)
     }
 
     console.log("smthing running 1");
 
     //add dummy products with no fk
-    for (var i = 0; i < 22; i++) {
+    for (var i = 0; i < 180; i++) {
       let product = await global.Product.create({
         name: `product ${i + 1}`,
         description: `smth about product ${i + 1}`,
-        favorability: i
+        favorability: i + 1
       });
       console.log(`product` + product);
     }
@@ -103,8 +105,8 @@ router
     console.log(`fileNameArray` + fileNameArray);
     console.log(`fileNameArray Length` + fileNameArray.length);
 
-    for (var i = 0; i < 22; i++) {
-      let product = await global.ProductDetail.create({
+    for (var i = 0; i < 180; i++) {
+      let productDetail = await global.ProductDetail.create({
         images: [
           {
             link: fileNameArray[i],
@@ -122,6 +124,7 @@ router
           }
         ]
       });
+      console.log(`productDetail i : ` + productDetail)
     }
     console.log("smthing running 3");
     // res.send("Task finished!");
@@ -145,6 +148,7 @@ router
     let product = await global.Product.find();
     let manySide = parseInt(product.length / category.length);
 
+    console.log(`-----`);
     for (var i = 0; i < category.length - 1; i++) {
       console.log(product.length);
       for (var q = 0; q < manySide; q++) {
@@ -178,6 +182,7 @@ router
     let product = await global.Product.find();
     let manySide = parseInt(product.length / vendor.length);
 
+    console.log(`-----`);
     for (var i = 0; i < vendor.length - 1; i++) {
       console.log(product.length);
       for (var q = 0; q < manySide; q++) {
@@ -211,6 +216,7 @@ router
     let product = await global.Product.find();
     let manySide = product.length / productDetail.length;
 
+    console.log(`-----`);
     for (var i = 0; i < productDetail.length - 1; i++) {
       console.log(product.length);
       for (var q = 0; q < manySide; q++) {
