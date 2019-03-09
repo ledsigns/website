@@ -32,7 +32,7 @@ router
     console.log(categoryImages);
 
     let categoryArray = [];
-    for (var i = 0; i < 30; i++) {
+    for (var i = 0; i < 5; i++) {
       let category = await global.Category.create({
         name: `lvl2 Category ${i + 1}`,
         description: `all the category ${i + 1} stuff here`,
@@ -53,7 +53,7 @@ router
     console.log(vendorImages);
 
     let vendorArray = []
-    for (var i = 0; i < 60; i++) {
+    for (var i = 0; i < 9; i++) {
       let vendor = await global.Vendor.create({
         name: `vendor${i + 1}`,
         websiteURL: `www.vendor${i + 1}.com`,
@@ -72,7 +72,7 @@ router
     console.log("smthing running 1");
 
     //add dummy products with no fk
-    for (var i = 0; i < 180; i++) {
+    for (var i = 0; i < 30; i++) {
       let product = await global.Product.create({
         name: `product ${i + 1}`,
         description: `smth about product ${i + 1}`,
@@ -85,11 +85,11 @@ router
 
     //add dummy productDetail
     let dirArray = [
-      "sampleData/product/Indoor Fixed LED Display",
-      "sampleData/product/LED Components",
-      "sampleData/product/LEDMAN COB Display",
-      "sampleData/product/Outdoor Fixed LED Display",
-      "sampleData/product/Rental LED Display"
+      "sampleData/product/Indoor+Fixed+LED+Display", //s3 path doesn't read ' '
+      "sampleData/product/LED+Components",
+      "sampleData/product/LEDMAN+COB+Display",
+      "sampleData/product/Outdoor+Fixed+LED+Display",
+      "sampleData/product/Rental+LED+Display"
     ];
 
     let fileNameArray = [];
@@ -105,7 +105,7 @@ router
     console.log(`fileNameArray` + fileNameArray);
     console.log(`fileNameArray Length` + fileNameArray.length);
 
-    for (var i = 0; i < 180; i++) {
+    for (var i = 0; i < 30; i++) {
       let productDetail = await global.ProductDetail.create({
         images: [
           {
@@ -143,7 +143,7 @@ router
   })
 
   // set up relationships
-  .get("/linkCategory", async (req, res) => {
+  .get("/link1", async (req, res) => {
     let category = await global.Category.find();
     let product = await global.Product.find();
     let manySide = parseInt(product.length / category.length);
@@ -177,7 +177,7 @@ router
     res.json({ product: product });
   })
 
-  .get("/linkVendor", async (req, res) => {
+  .get("/link12", async (req, res) => {
     let vendor = await global.Vendor.find();
     let product = await global.Product.find();
     let manySide = parseInt(product.length / vendor.length);
@@ -211,7 +211,7 @@ router
     res.json({ product: product });
   })
 
-  .get("/linkProductDetail", async (req, res) => {
+  .get("/link123", async (req, res) => {
     let productDetail = await global.ProductDetail.find();
     let product = await global.Product.find();
     let manySide = product.length / productDetail.length;

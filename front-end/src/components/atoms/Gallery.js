@@ -91,7 +91,7 @@ export default class Gallery extends Component {
                 })} */}
                   {arrayToDisplay.map(index => {
                     return GalleryItem(
-                      "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
+                      data[index].imgPath,
                       data[index].caption,
                       data[index].url
                     );

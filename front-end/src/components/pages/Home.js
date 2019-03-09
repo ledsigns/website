@@ -21,13 +21,19 @@ export default class HomePage extends Component {
   async componentDidMount() {
     let newData = await getEventData();
     let alteredData = newData.categories.map(element => {
-      return { caption: element.name, url: `/category/${element._id}` };
+      console.log(`the newData is ` + JSON.stringify(element))
+      return {
+        caption: element.name,
+        url: `/category/${element._id}`,  // where generate the url for next page
+        imgPath: element.categoryLogo[0].link
+      };
     });
     this.setState({ categories: alteredData });
     console.log(`updated state is ` + JSON.stringify(this.state.categories))
   }
 
   render() {
+    console.log(`updated state is ` + this.state.categories);
     return (
       <div
         style={{

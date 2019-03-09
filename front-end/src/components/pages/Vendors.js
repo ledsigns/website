@@ -16,7 +16,8 @@ export default class HomePage extends Component {
       console.log(element);
       return {
         caption: element.name,
-        url: `/category/${categoryId}/vendor/${element._id}` // where generate the url for next page
+        url: `/category/${categoryId}/vendor/${element._id}`, // where generate the url for next page
+        imgPath: element.vendorLogo[0].link
       };
     });
     console.log("vendors.vendors");
@@ -25,7 +26,7 @@ export default class HomePage extends Component {
   }
 
   render() {
-    console.log(this.state.vendors);
+    console.log(`updated state is ` + JSON.stringify(this.state.vendors));
     return (
       <>
         {this.state.vendors ? (

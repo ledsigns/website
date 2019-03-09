@@ -19,7 +19,8 @@ export default class HomePage extends Component {
       console.log(element);
       return {
         caption: element.name,
-        url: `/product/${element._id}`
+        url: `/product/${element._id}`, // where generate the url for next page
+        imgPath: element.productDetail.images[0].link
       };
     });
     console.log("products.products");
@@ -28,7 +29,7 @@ export default class HomePage extends Component {
   }
 
   render() {
-    console.log(this.state.products);
+    console.log(`updated state is ` + JSON.stringify(this.state.products));
     return (
       <>
         {this.state.products ? (
