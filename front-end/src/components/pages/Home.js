@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "../styles/pages/Home.scss";
 import HomeCarousel from "../molecules/Carousel";
 import Gallery from "../atoms/Gallery";
-import { getEventData } from "../../api/category";
+import { getCategoryData } from "../../api/category";
+import SearchBar from 'material-ui-search-bar'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
 const elements = [
   {
     img:
@@ -16,10 +19,14 @@ const elements = [
   }
 ];
 export default class HomePage extends Component {
-  state = { categories: null };
+  state = {
+    categories: null,
+    searchText: null,
+    searchResult: null,
+  };
 
   async componentDidMount() {
-    let newData = await getEventData();
+    let newData = await getCategoryData();
     let alteredData = newData.categories.map(element => {
       console.log(`the newData is ` + JSON.stringify(element))
       return {
@@ -28,12 +35,31 @@ export default class HomePage extends Component {
         imgPath: element.categoryLogo[0].link
       };
     });
-    this.setState({ categories: alteredData });
-    console.log(`updated state is ` + JSON.stringify(this.state.categories))
+    this.setState({
+      categories: alteredData,
+      searchResult: alteredData
+    });
+    console.log(`updated state is ` + JSON.stringify(this.state.searchResult))
   }
 
+  searchCategory(value) {
+    this.setState({ searchText: value }, () => {
+      let categories = this.state.categories
+      let searchText = this.state.searchText
+      let returnCategories = [];
+      let reg = new RegExp(`${searchText}`, 'i');
+      categories.forEach((searchCategory, i) => {
+        if (categories[i].caption.match(reg)) {
+          returnCategories.push(searchCategory)
+        }
+      })
+      console.log(`searchResult are ` + JSON.stringify(returnCategories))
+      this.setState({ searchResult: returnCategories })
+    })
+  }
+
+
   render() {
-    console.log(`updated state is ` + this.state.categories);
     return (
       <div
         style={{
@@ -94,7 +120,22 @@ export default class HomePage extends Component {
         </div> */}
 
         {this.state.categories ? (
-          <Gallery width="70%" numberPerPage={8} data={this.state.categories} />
+          <>
+            <MuiThemeProvider>
+              <SearchBar
+                onChange={
+                  (value) => this.searchCategory(value)
+                }
+                // onRequestSearch={() => this.filterVenues(this.state.venues, this.state.seachText)}
+                style={{
+                  margin: '0 auto',
+                  maxWidth: 800,
+                }}
+              />
+            </MuiThemeProvider>
+
+            <Gallery width="70%" numberPerPage={8} data={this.state.searchResult} />
+          </>
         ) : (
             false
           )}
