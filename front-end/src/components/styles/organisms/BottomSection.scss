@@ -1,0 +1,19 @@
+.bottom-section {
+  display: flex;
+  justify-content: space-around;
+  height: 300px;
+  width: 100%;
+  background-color: white;
+  .items {
+    // background-color: red;
+    padding-top: 70px;
+    display: flex;
+    flex-direction: "row";
+    justify-content: space-around;
+    width: 80%;
+    height: 100%;
+    .item {
+      text-align: left;
+    }
+  }
+}

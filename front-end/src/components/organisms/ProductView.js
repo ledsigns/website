@@ -28,7 +28,6 @@ export default class Product extends Component {
           alignItems: "center"
         }}
       >
-        <h1 style={{ marginBottom: "80px" }}>{details.name}</h1>
         <div
           style={{
             display: "flex",
@@ -47,12 +46,14 @@ export default class Product extends Component {
                   // overflow: "hidden"
                 }
               }
-              elements={elements}
+              elements={details.productDetail.images.map(element => ({
+                img: element.link,
+                src: element.link
+              }))}
             />
           </div>
           <div style={{ marginLeft: "30px", width: "40%" }}>
-            <h5>{details.name}</h5>
-            <p>{details.description}</p>
+            <h2>{details.name}</h2>
           </div>
         </div>
       </div>

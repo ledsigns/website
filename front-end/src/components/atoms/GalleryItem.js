@@ -18,41 +18,42 @@ export default function GalleryItem(src, caption, url, height, width) {
       />
       <link rel="stylesheet" href="cards-gallery.css" />
       {/* <div style={{}} class="col-md-6 col-lg-3"> */}
-      <div class="card border-0 transform-on-hover">
-        {/* <img
+      <a class="lightbox" href={url}>
+        <div class="card border-0 transform-on-hover">
+          {/* <img
             src={src}
             alt="Card Image"
             class="card-img-top"
           /> */}
 
-        <a class="lightbox" href={url}>
           <div
             style={{
               backgroundImage: `url(${src})`, //where give the next links
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center center",
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               // backgroundSize: "cover",
               // backgroundPosition: "centered",
               // backgroundAttachment: "fixed",
               width: width,
-              height: height
+              height: height,
+              margin: "10px"
             }}
           />
-        </a>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            // flexDirection: "column",
-            // textAlign: "center",
-            height: "30px"
-          }}
-        >
-          <p style={{ paddingTop: "5px" }}>{caption}</p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              // flexDirection: "column",
+              // textAlign: "center",
+              height: "30px"
+            }}
+          >
+            <p style={{ paddingTop: "5px" }}>{caption}</p>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   );
 }

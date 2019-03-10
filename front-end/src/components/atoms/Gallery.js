@@ -52,10 +52,10 @@ export default class Gallery extends Component {
     let arrayToDisplay, numberOfPages;
     [arrayToDisplay, numberOfPages] = this.pageSorter();
     let data = this.props.data;
-    console.log(`data is +` + JSON.stringify(data))
+    console.log(`data is +` + JSON.stringify(data));
     return (
       <>
-        <div style={{ height: "60vh", display: "block", width: "100vw" }}>
+        <div style={{ height: "60%", display: "block", width: "100%" }}>
           <div>
             <link
               rel="stylesheet"
@@ -77,7 +77,8 @@ export default class Gallery extends Component {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-around",
+                    // justifyContent: "space-around",
+                    alignContent: "flex-start",
                     width: this.props.width
                   }}
                   className="row"
@@ -101,7 +102,7 @@ export default class Gallery extends Component {
             </section>
           </div>
         </div>
-        <div style={{ display: "block", marginTop: "20px", width: "100%" }}>
+        <div style={{ display: "block", width: "100%" }}>
           <div
             style={{
               display: "flex",

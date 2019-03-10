@@ -15,7 +15,7 @@ export default class App extends React.Component {
   render() {
     return (
       <>
-        <div style={{ paddingTop: "100px" }} className="paginator">
+        <div style={{ paddingTop: "20px" }} className="paginator">
           <ReactPaginate
             previousLabel={"previous"}
             nextLabel={"next"}

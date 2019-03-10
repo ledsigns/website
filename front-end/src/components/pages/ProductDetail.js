@@ -5,20 +5,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import { getProduct } from "../../api/product";
 import RelevantCarousel from "../molecules/RelevantCarousel";
-const items = [
-  {
-    title: "Product Detail",
-    inside: <p>Product Detail</p>
-  },
-  {
-    title: "Parameters",
-    inside: <p>Parameters</p>
-  },
-  {
-    title: "Case Study",
-    inside: <p>Case Study</p>
-  }
-];
 
 const carouselData = [
   { caption: "Product 1", url: "/" },
@@ -32,7 +18,8 @@ export default class ProductPage extends Component {
   };
   async componentDidMount() {
     let newProductDetail = await getProduct(this.props.match.params.id);
-    console.log(newProductDetail.productDetail[0]);
+    console.log("newProductDetail");
+    console.log(newProductDetail);
     this.setState({
       productDetail: newProductDetail.productDetail[0]
     });
@@ -81,11 +68,26 @@ export default class ProductPage extends Component {
                     <ProductView productDetail={this.state.productDetail} />
                   </div>
 
-                  <TabNav items={items} />
+                  <TabNav
+                    items={[
+                      {
+                        title: "Product Detail",
+                        inside: <p>{this.state.productDetail.description}</p>
+                      },
+                      {
+                        title: "Parameters",
+                        inside: <p>Parameters</p>
+                      },
+                      {
+                        title: "Case Study",
+                        inside: <p>Case Study</p>
+                      }
+                    ]}
+                  />
                 </div>
               ) : (
-                  <CircularProgress />
-                )}
+                <CircularProgress />
+              )}
             </div>
             <div style={{ marginBottom: "50px" }}>
               <RelevantCarousel items={carouselData} />

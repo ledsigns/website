@@ -3,8 +3,9 @@ import "../styles/pages/Home.scss";
 import HomeCarousel from "../molecules/Carousel";
 import Gallery from "../atoms/Gallery";
 import { getCategoryData } from "../../api/category";
-import SearchBar from 'material-ui-search-bar'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import SearchBar from "material-ui-search-bar";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import Paper from "@material-ui/core/Paper";
 
 const elements = [
   {
@@ -22,16 +23,17 @@ export default class HomePage extends Component {
   state = {
     categories: null,
     searchText: null,
-    searchResult: null,
+    searchResult: null
   };
 
   async componentDidMount() {
     let newData = await getCategoryData();
+    console.log(newData);
     let alteredData = newData.categories.map(element => {
-      console.log(`the newData is ` + JSON.stringify(element))
+      console.log(`the newData is ` + JSON.stringify(element));
       return {
         caption: element.name,
-        url: `/category/${element._id}`,  // where generate the url for next page
+        url: `/category/${element._id}`, // where generate the url for next page
         imgPath: element.categoryLogo[0].link
       };
     });
@@ -39,25 +41,24 @@ export default class HomePage extends Component {
       categories: alteredData,
       searchResult: alteredData
     });
-    console.log(`updated state is ` + JSON.stringify(this.state.searchResult))
+    console.log(`updated state is ` + JSON.stringify(this.state.searchResult));
   }
 
   searchCategory(value) {
     this.setState({ searchText: value }, () => {
-      let categories = this.state.categories
-      let searchText = this.state.searchText
+      let categories = this.state.categories;
+      let searchText = this.state.searchText;
       let returnCategories = [];
-      let reg = new RegExp(`${searchText}`, 'i');
+      let reg = new RegExp(`${searchText}`, "i");
       categories.forEach((searchCategory, i) => {
         if (categories[i].caption.match(reg)) {
-          returnCategories.push(searchCategory)
+          returnCategories.push(searchCategory);
         }
-      })
-      console.log(`searchResult are ` + JSON.stringify(returnCategories))
-      this.setState({ searchResult: returnCategories })
-    })
+      });
+      console.log(`searchResult are ` + JSON.stringify(returnCategories));
+      this.setState({ searchResult: returnCategories });
+    });
   }
-
 
   render() {
     return (
@@ -120,25 +121,45 @@ export default class HomePage extends Component {
         </div> */}
 
         {this.state.categories ? (
-          <>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center"
+            }}
+          >
             <MuiThemeProvider>
               <SearchBar
-                onChange={
-                  (value) => this.searchCategory(value)
-                }
+                onChange={value => this.searchCategory(value)}
                 // onRequestSearch={() => this.filterVenues(this.state.venues, this.state.seachText)}
                 style={{
-                  margin: '0 auto',
-                  maxWidth: 800,
+                  margin: "0 auto",
+                  maxWidth: 800
                 }}
               />
             </MuiThemeProvider>
-
-            <Gallery width="70%" numberPerPage={8} data={this.state.searchResult} />
-          </>
+            <div
+              style={{
+                width: "80%",
+                paddingTop: "20px",
+                paddingBottom: "20px"
+              }}
+            >
+              <Paper>
+                <div style={{ paddingTop: "10px" }}>
+                  <Gallery
+                    width="90%"
+                    numberPerPage={8}
+                    data={this.state.searchResult}
+                  />
+                </div>
+              </Paper>
+            </div>
+          </div>
         ) : (
-            false
-          )}
+          false
+        )}
       </div>
     );
   }

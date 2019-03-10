@@ -47,7 +47,7 @@ class NavSection extends Component {
         <div className={styles.root} onMouseLeave={() => this.onExit()}>
           <AppBar position="static" color="default">
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <div style={{ width: "65%" }}>
+              <div style={{ width: "85%" }}>
                 <Toolbar
                   style={{ justifyContent: "space-around", display: "flex" }}
                 >
@@ -62,32 +62,52 @@ class NavSection extends Component {
                     className
                     style={{
                       height: "100%",
-                      width: "70%",
+                      width: "80%",
                       display: "flex",
                       flexDirection: "row",
-                      justifyContent: "center"
+                      justifyContent: "space-around"
                     }}
                   >
                     <a href="/">
-                      <div
-                        onMouseOver={() => this.changeIndex(0)}
-                        className="navbar-element"
-                      >
-                        <h6>Home</h6>
+                      <div className="navbar-element">
+                        <p>Home</p>
                       </div>
                     </a>
+                    <div
+                      onMouseOver={() => this.changeIndex(0)}
+                      className="navbar-element"
+                    >
+                      <p>Products</p>
+                    </div>
                     <div
                       onMouseOver={() => this.changeIndex(1)}
                       className="navbar-element"
                     >
-                      <h6>Products</h6>
+                      <p>Case Study</p>
                     </div>
-
                     <div
                       onMouseOver={() => this.changeIndex(2)}
                       className="navbar-element"
                     >
-                      <h6>Whatever</h6>
+                      <p>Solution</p>
+                    </div>
+                    <div
+                      onMouseOver={() => this.changeIndex(3)}
+                      className="navbar-element"
+                    >
+                      <p>About Us</p>
+                    </div>
+                    <div
+                      onMouseOver={() => this.changeIndex(4)}
+                      className="navbar-element"
+                    >
+                      <p>News</p>
+                    </div>
+                    <div
+                      onMouseOver={() => this.changeIndex(5)}
+                      className="navbar-element"
+                    >
+                      <p>Contact Us</p>
                     </div>
                   </div>
                 </Toolbar>
@@ -99,16 +119,6 @@ class NavSection extends Component {
               {show ? (
                 <>
                   <ItemsCarousel numberOfCards={1} activeItemIndex={index}>
-                    {/* <Paper className={styles.paper} elevation={1}> */}
-                    <div style={{ backgroundColor: "white" }}>
-                      <div className="slider-element">
-                        <div className="slider-nested">
-                          <h2>hai</h2>
-                        </div>
-                      </div>
-                    </div>
-                    {/* </Paper> */}
-                    {/* <Paper className={styles.paper} elevation={1}> */}
                     <div style={{ backgroundColor: "white" }}>
                       <div className="slider-element">
                         <div className="slider-nested">
@@ -116,8 +126,6 @@ class NavSection extends Component {
                         </div>
                       </div>
                     </div>
-                    {/* </Paper> */}
-                    {/* <Paper className={styles.paper} elevation={1}> */}
                     <div style={{ backgroundColor: "white" }}>
                       <div className="slider-element">
                         <div className="slider-nested">
@@ -125,7 +133,34 @@ class NavSection extends Component {
                         </div>
                       </div>
                     </div>
-                    {/* </Paper> */}
+                    <div style={{ backgroundColor: "white" }}>
+                      <div className="slider-element">
+                        <div className="slider-nested">
+                          <h2>Sup</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ backgroundColor: "white" }}>
+                      <div className="slider-element">
+                        <div className="slider-nested">
+                          <h2>Sup</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ backgroundColor: "white" }}>
+                      <div className="slider-element">
+                        <div className="slider-nested">
+                          <h2>Sup</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ backgroundColor: "white" }}>
+                      <div className="slider-element">
+                        <div className="slider-nested">
+                          <h2>Sup</h2>
+                        </div>
+                      </div>
+                    </div>
                   </ItemsCarousel>
                 </>
               ) : (
