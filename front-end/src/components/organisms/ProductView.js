@@ -1,13 +1,8 @@
 import React, { Component } from "react";
-import Carousel from "../molecules/Carousel";
+import ReactImageMagnify from "react-image-magnify";
+import ReactSlick from "react-slick";
 
 const elements = [
-  {
-    img:
-      "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    src:
-      "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-  },
   {
     img:
       "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
@@ -37,7 +32,7 @@ export default class Product extends Component {
           }}
         >
           <div style={{ width: "40%" }}>
-            <Carousel
+            {/* <Carousel
               customStyles={
                 {
                   // height: "300px",
@@ -46,11 +41,41 @@ export default class Product extends Component {
                   // overflow: "hidden"
                 }
               }
-              elements={details.productDetail.images.map(element => ({
-                img: element.link,
-                src: element.link
-              }))}
-            />
+              elements={}
+            /> */}
+            <ReactSlick
+              {...{
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }}
+            >
+              {details.productDetail.images.map((src, index) => (
+                <div key={index}>
+                  <ReactImageMagnify
+                    {...{
+                      smallImage: {
+                        alt: "Wristwatch by Versace",
+                        isFluidWidth: true,
+                        src: src.link
+                      },
+                      largeImage: {
+                        src: src.link,
+                        width: 1000,
+                        height: 1000
+                      },
+                      lensStyle: { backgroundColor: "rgba(0,0,0,.6)" }
+                    }}
+                  />
+                </div>
+              ))}
+            </ReactSlick>
+            {/* details.productDetail.images.map(element => ({
+              img: element.link,
+            src: element.link
+          })) */}
           </div>
           <div style={{ marginLeft: "30px", width: "40%" }}>
             <h2>{details.name}</h2>

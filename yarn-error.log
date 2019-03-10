@@ -1,20 +1,30 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add material-ui
+  /Users/marcos/.nvm/versions/node/v10.15.1/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add ReactImageMagnify
 
 PATH: 
-  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Users\derek\AppData\Local\Programs\Python\Python37-32\Scripts;C:\ProgramData\chocolatey\bin;C:\Users\derek\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\derek\AppData\Local\Programs\Python\Python36\;C:\Users\derek\AppData\Local\Microsoft\WindowsApps;C:\Users\derek\AppData\Roaming\npm;C:\Users\derek\AppData\Local\atom\bin;C:\Users\derek\AppData\Local\GitHubDesktop\bin;C:\Users\derek\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\derek\AppData\Local\Yarn\bin;C:\Users\derek\AppData\Local\Android\Sdk\tools;C:\Users\derek\AppData\Local\Android\Sdk\platform-tools;
+  /Users/marcos/.nvm/versions/node/v10.15.1/bin:/Users/marcos/.pyenv/shims:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/marcos/.nvm/versions/node/v10.15.1/bin:/Users/marcos/.pyenv/shims:/Library/Frameworks/Python.framework/Versions/3.7/bin
 
 Yarn version: 
-  1.12.3
+  1.13.0
 
 Node version: 
-  8.12.0
+  10.15.1
 
 Platform: 
-  win32 x64
+  darwin x64
 
 Trace: 
-  Error: EPERM: operation not permitted, scandir 'C:\Users\derek\source\repos\LedSignOutSource\LedSignWebsite2\node_modules\@types'
+  Error: https://registry.yarnpkg.com/ReactImageMagnify: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:66255:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:129397:22)
+      at Request.emit (events.js:189:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:130369:10)
+      at Request.emit (events.js:189:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:130291:12)
+      at Object.onceWrapper (events.js:277:13)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1103:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {

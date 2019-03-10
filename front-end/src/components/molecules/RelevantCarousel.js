@@ -44,29 +44,29 @@ export default class MultipleItems extends Component {
                 "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
                 "Product1",
                 "/",
-                "240px",
-                "280px"
+                "200px",
+                "240px"
               )}
               {GalleryItem(
                 "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
                 "Product1",
                 "/",
-                "250px",
-                "280px"
+                "200px",
+                "240px"
               )}
               {GalleryItem(
                 "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
                 "Product1",
                 "/",
-                "250px",
-                "280px"
+                "200px",
+                "240px"
               )}
               {GalleryItem(
                 "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
                 "Product1",
                 "/",
-                "250px",
-                "280px"
+                "200px",
+                "240px"
               )}
             </div>
           </section>
