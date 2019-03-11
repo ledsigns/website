@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/molecules/NavProductSection.scss";
-import Element from "./NavProductSectionElement.js";
+import Element from "./NavProductElement.js";
 
 export default class NavProductSection extends Component {
   state = {
@@ -75,27 +75,22 @@ export default class NavProductSection extends Component {
           {this.props.categoryData && this.props.productData ? (
             <>
               <div className="category1">
-                <div className="box"
-                  onMouseEnter={() => this.onHoverMain(0)}
+                <div className="box" onMouseEnter={() => this.onHoverMain(0)}
                   onMouseEnter={() => this.onHoverSub(this.props.categoryData[0].imgPath)}
-
                 >
                   <p>{this.props.categoryData[0].caption}</p>
                 </div>
-                <div className="box"
-                  onMouseEnter={() => this.onHoverMain(1)}
+                <div className="box" onMouseEnter={() => this.onHoverMain(1)}
                   onMouseEnter={() => this.onHoverSub(this.props.categoryData[1].imgPath)}
                 >
                   <p>{this.props.categoryData[1].caption}</p>
                 </div>
-                <div className="box"
-                  onMouseEnter={() => this.onHoverMain(2)}
+                <div className="box" onMouseEnter={() => this.onHoverMain(2)}
                   onMouseEnter={() => this.onHoverSub(this.props.categoryData[2].imgPath)}
                 >
                   <p>{this.props.categoryData[2].caption}</p>
                 </div>
-                <div className="box"
-                  onMouseEnter={() => this.onHoverMain(3)}
+                <div className="box" onMouseEnter={() => this.onHoverMain(3)}
                   onMouseEnter={() => this.onHoverSub(this.props.categoryData[3].imgPath)}
                 >
                   <p>{this.props.categoryData[3].caption}</p>

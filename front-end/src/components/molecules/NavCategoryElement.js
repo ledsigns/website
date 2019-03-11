@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "../styles/molecules/NavProductSection.scss";
 
-export default class NavProductSectionElement extends Component {
-
+export default class NavProductElement extends Component {
 
     render() {
         return (
@@ -13,10 +12,12 @@ export default class NavProductSectionElement extends Component {
                     this.props.onHoverSub(
                         this.props.imgPath
                     )
+                    this.props.onHoverMain(
+                        this.props.index
+                    )
                 }
                 }
             >
-
                 <p>{this.props.caption}</p>
             </div >
         );
