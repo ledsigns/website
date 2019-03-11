@@ -18,7 +18,7 @@ export default class NavProductElement extends Component {
                 }
                 }
             >
-                <p>{this.props.caption}</p>
+                <a href={this.props.url} style={{ color: 'black', textDecoration: 'none' }} ><p>{this.props.caption}</p></a>
             </div >
         );
     }
