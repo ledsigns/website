@@ -8,7 +8,7 @@ import ProductsPage from "./components/pages/Products";
 import ProductDetailPage from "./components/pages/ProductDetail";
 import HoverButton from "./components/molecules/Hover";
 import BottomSection from "./components/organisms/BottomSection";
-import ProductByCategoryPage from './components/pages/ProductByCategoryPage'
+import ProductByCategoryPage from './components/pages/ProductByCategory'
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./main.scss";
