@@ -16,7 +16,7 @@ router.get("/category/:id", async (req, res) => {
   console.log("smthing running");
   var id = req.params.id;
   console.log(`id ` + id)
-  let products = await global.Product.find({ category: id });
+  let products = await global.Product.find({ category: id }).populate("productDetail");
 
   res.json({
     products: products
