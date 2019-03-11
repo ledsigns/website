@@ -15,3 +15,11 @@ export function getProductByCategoryAndVendor(categoryId, vendorId) {
     }
   });
 }
+
+export function getProductByCategory(id) {
+  return api.get(`/product/category/${id}`).then(res => {
+    if (res) {
+      return res.data;
+    }
+  });
+}

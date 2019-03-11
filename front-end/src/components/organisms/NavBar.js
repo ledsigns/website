@@ -33,7 +33,7 @@ class NavSection extends Component {
     let categoryData = newData.categoryArray.map(element => {
       return {
         caption: element.name,
-        url: `/category/${element._id}`, // where generate the url for next page
+        url: `/productByCategory/${element._id}`, // where generate the url for next page
         imgPath: element.categoryLogo[0].link
       };
     });

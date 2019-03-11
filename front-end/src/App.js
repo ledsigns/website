@@ -8,6 +8,7 @@ import ProductsPage from "./components/pages/Products";
 import ProductDetailPage from "./components/pages/ProductDetail";
 import HoverButton from "./components/molecules/Hover";
 import BottomSection from "./components/organisms/BottomSection";
+import ProductByCategoryPage from './components/pages/ProductByCategoryPage'
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./main.scss";
@@ -30,6 +31,11 @@ class App extends Component {
               exact
               path="/category/:categoryId/vendor/:vendorId"
               component={ProductsPage}
+            />
+            <Route
+              exact
+              path="/productByCategory/:categoryId"
+              component={ProductByCategoryPage}
             />
           </Switch>
         </Router>
