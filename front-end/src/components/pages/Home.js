@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../styles/pages/Home.scss";
 import HomeCarousel from "../molecules/Carousel";
 import Gallery from "../atoms/Gallery";
-import { getCategoryData } from "../../api/category";
+import { getHomePageData } from "../../api/homePage";
 import SearchBar from "material-ui-search-bar";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Paper from "@material-ui/core/Paper";
@@ -27,10 +27,9 @@ export default class HomePage extends Component {
   };
 
   async componentDidMount() {
-    let newData = await getCategoryData();
+    let newData = await getHomePageData();
     console.log(newData);
     let alteredData = newData.categories.map(element => {
-      console.log(`the newData is ` + JSON.stringify(element));
       return {
         caption: element.name,
         url: `/category/${element._id}`, // where generate the url for next page
@@ -158,8 +157,8 @@ export default class HomePage extends Component {
             </div>
           </div>
         ) : (
-          false
-        )}
+            false
+          )}
       </div>
     );
   }

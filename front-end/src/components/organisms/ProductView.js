@@ -66,7 +66,7 @@ export default class Product extends Component {
                         width: 1000,
                         height: 1000
                       },
-                      lensStyle: { backgroundColor: "rgba(0,0,0,.6)" }
+                      lensStyle: { backgroundColor: "rgba(0,0,0,0)" }
                     }}
                   />
                 </div>

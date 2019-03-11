@@ -10,6 +10,7 @@ import ItemsCarousel from "react-items-carousel";
 import Fade from "@material-ui/core/Fade";
 import Paper from "@material-ui/core/Paper";
 import NavProductSection from "../molecules/NavProductSection";
+import { getNavBarData } from "../../api/navBar"
 
 const styles = theme => ({
   root: {
@@ -20,8 +21,39 @@ const styles = theme => ({
 class NavSection extends Component {
   state = {
     index: 0,
-    show: false
+    show: false,
+    categoryData: null,
+    productData: null
   };
+
+  async componentDidMount() {
+    let newData = await getNavBarData();
+    console.log(newData);
+
+    let categoryData = newData.categoryArray.map(element => {
+      return {
+        caption: element.name,
+        url: `/category/${element._id}`, // where generate the url for next page
+        imgPath: element.categoryLogo[0].link
+      };
+    });
+    this.setState({
+      categoryData: categoryData,
+    });
+    console.log(`updated state is ` + JSON.stringify(this.state.categoryData));
+
+    let productData = newData.productArray.map(element => {
+      return {
+        caption: element.name,
+        url: `/product/${element._id}`, // where generate the url for next page
+        imgPath: element.productDetail.images[0].link
+      };
+    });
+    this.setState({
+      productData: productData,
+    });
+    console.log(`updated state is ` + JSON.stringify(this.state.productData));
+  }
 
   onnEnter = () => {
     this.setState({ show: true });
@@ -122,7 +154,7 @@ class NavSection extends Component {
                     <div style={{ backgroundColor: "white" }}>
                       <div className="slider-element">
                         <div className="slider-nested">
-                          <NavProductSection />
+                          <NavProductSection categoryData={this.state.categoryData} productData={this.state.productData} />
                         </div>
                       </div>
                     </div>
@@ -164,8 +196,8 @@ class NavSection extends Component {
                   </ItemsCarousel>
                 </>
               ) : (
-                false
-              )}
+                  false
+                )}
             </div>
           </Fade>
           {/*  */}

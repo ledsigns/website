@@ -26,6 +26,7 @@ const productRouter = require("./routes/product");
 const vendorRouter = require("./routes/vendor");
 const categoryRouter = require("./routes/category");
 const homePage = require("./routes/homePage");
+const navBar = require("./routes/navBar")
 
 //server side routers
 server.use("/test", testRouter);
@@ -33,6 +34,7 @@ server.use("/product", productRouter);
 server.use("/vendor", vendorRouter);
 server.use("/category", categoryRouter);
 server.use("/homePage", homePage);
+server.use("/navBar", navBar);
 
 // Handle errors by returning JSON
 server.use((error, req, res, next) => {

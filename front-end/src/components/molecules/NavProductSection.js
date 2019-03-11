@@ -5,8 +5,14 @@ export default class NavProductSection extends Component {
   state = {
     selectedIndex: 0,
     selectedImg:
-      "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+      "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   };
+
+  async componentDidMount() {
+    console.log(`passed props ` + JSON.stringify(this.props.categoryData))
+    console.log(`passed props ` + JSON.stringify(this.props.productData))
+  }
+
   renderSwitch(param) {
     switch (param) {
       case 0:
@@ -16,7 +22,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/1020315/pexels-photo-1020315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 )
               }
             >
@@ -26,7 +32,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/292442/pexels-photo-292442.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[0].imgPath
                 )
               }
             >
@@ -36,7 +42,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[4].imgPath
                 )
               }
             >
@@ -46,7 +52,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/259915/pexels-photo-259915.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                  this.props.productData[8].imgPath
                 )
               }
             >
@@ -61,7 +67,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/1020315/pexels-photo-1020315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[12].imgPath
                 )
               }
             >
@@ -71,7 +77,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/292442/pexels-photo-292442.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[1].imgPath
                 )
               }
             >
@@ -81,7 +87,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[5].imgPath
                 )
               }
             >
@@ -91,7 +97,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/259915/pexels-photo-259915.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                  this.props.productData[9].imgPath
                 )
               }
             >
@@ -106,7 +112,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/1020315/pexels-photo-1020315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[13].imgPath
                 )
               }
             >
@@ -116,7 +122,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/292442/pexels-photo-292442.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[2].imgPath
                 )
               }
             >
@@ -126,7 +132,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[6].imgPath
                 )
               }
             >
@@ -136,7 +142,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/259915/pexels-photo-259915.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                  this.props.productData[10].imgPath
                 )
               }
             >
@@ -151,7 +157,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/1020315/pexels-photo-1020315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[14].imgPath
                 )
               }
             >
@@ -161,7 +167,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/292442/pexels-photo-292442.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[3].imgPath
                 )
               }
             >
@@ -171,7 +177,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  this.props.productData[7].imgPath
                 )
               }
             >
@@ -181,7 +187,7 @@ export default class NavProductSection extends Component {
               className="box"
               onMouseEnter={() =>
                 this.onHoverSub(
-                  "https://images.pexels.com/photos/259915/pexels-photo-259915.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                  this.props.productData[11].imgPath
                 )
               }
             >
@@ -209,26 +215,32 @@ export default class NavProductSection extends Component {
     return (
       <>
         <div className="navbar-section">
-          <div className="category1">
-            <div className="box" onMouseEnter={() => this.onHoverMain(0)}>
-              <p>Category 1</p>
-            </div>
-            <div className="box" onMouseEnter={() => this.onHoverMain(1)}>
-              <p>Category 2</p>
-            </div>
-            <div className="box" onMouseEnter={() => this.onHoverMain(2)}>
-              <p>Category 3</p>
-            </div>
-            <div className="box" onMouseEnter={() => this.onHoverMain(3)}>
-              <p>Category 4</p>
-            </div>
-          </div>
-          <div className="category2">
-            {this.renderSwitch(this.state.selectedIndex)}
-          </div>
-          <div className="image">
-            <img src={this.state.selectedImg} alt="" />
-          </div>
+          {this.props.categoryData && this.props.productData ? (
+            <>
+              <div className="category1">
+                <div className="box" onMouseEnter={() => this.onHoverMain(0)}>
+                  <p>{this.props.categoryData[0].caption}</p>
+                </div>
+                <div className="box" onMouseEnter={() => this.onHoverMain(1)}>
+                  <p>{this.props.categoryData[1].caption}</p>
+                </div>
+                <div className="box" onMouseEnter={() => this.onHoverMain(2)}>
+                  <p>{this.props.categoryData[2].caption}</p>
+                </div>
+                <div className="box" onMouseEnter={() => this.onHoverMain(3)}>
+                  <p>{this.props.categoryData[3].caption}</p>
+                </div>
+              </div>
+              <div className="category2">
+                {this.renderSwitch(this.state.selectedIndex)}
+              </div>
+              <div className="image">
+                <img src={this.state.selectedImg} alt="" />
+              </div>
+            </>
+          ) : (
+              false
+            )}
         </div>
       </>
     );
