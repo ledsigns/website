@@ -90,13 +90,19 @@ export default class Gallery extends Component {
                     element.url
                   );
                 })} */}
-                  {arrayToDisplay.map(index => {
-                    return GalleryItem(
-                      data[index].imgPath,
-                      data[index].caption,
-                      data[index].url
-                    );
-                  })}
+                  {arrayToDisplay.length !== 0 ? (
+                    <>
+                      {arrayToDisplay.map(index => {
+                        return GalleryItem(
+                          data[index].imgPath,
+                          data[index].caption,
+                          data[index].url
+                        );
+                      })}
+                    </>
+                  ) : (
+                    <h3>Sorry no results</h3>
+                  )}
                 </div>
               </div>
             </section>
