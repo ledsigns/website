@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "../styles/molecules/NavProductSection.scss";
+import Element from "./NavProductSectionElement.js";
 
 export default class NavProductSection extends Component {
   state = {
     selectedIndex: 0,
     selectedImg:
-      "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/product/LEDMAN+COB+Display/20180820044507_391976.jpg",
   };
 
   async componentDidMount() {
@@ -13,186 +14,41 @@ export default class NavProductSection extends Component {
     console.log(`passed props ` + JSON.stringify(this.props.productData))
   }
 
+  mapElement(start, end) {
+    let table = []
+
+    for (let i = start; i < end; i++) {
+      table.push(<Element caption={this.props.productData[i].caption}
+        onHoverSub={this.onHoverSub.bind(this)}
+        imgPath={this.props.productData[i].imgPath} />)
+    }
+    return table
+  }
+
   renderSwitch(param) {
     switch (param) {
       case 0:
         return (
           <>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                )
-              }
-            >
-              <p>Category 1 Subcategory 1</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[0].imgPath
-                )
-              }
-            >
-              <p>Category 1 Subcategory 2</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[4].imgPath
-                )
-              }
-            >
-              <p>Category 1 Subcategory 3</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[8].imgPath
-                )
-              }
-            >
-              <p>Category 1 Subcategory 4</p>
-            </div>
+            {this.mapElement(0, 4)}
           </>
         );
       case 1:
         return (
           <>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[12].imgPath
-                )
-              }
-            >
-              <p>Category 2 Subcategory 1</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[1].imgPath
-                )
-              }
-            >
-              <p>Category 2 Subcategory 2</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[5].imgPath
-                )
-              }
-            >
-              <p>Category 2 Subcategory 3</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[9].imgPath
-                )
-              }
-            >
-              <p>Category 2 Subcategory 4</p>
-            </div>
+            {this.mapElement(4, 8)}
           </>
         );
       case 2:
         return (
           <>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[13].imgPath
-                )
-              }
-            >
-              <p>Category 3 Subcategory 1</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[2].imgPath
-                )
-              }
-            >
-              <p>Category 3 Subcategory 2</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[6].imgPath
-                )
-              }
-            >
-              <p>Category 3 Subcategory 3</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[10].imgPath
-                )
-              }
-            >
-              <p>Category 3 Subcategory 4</p>
-            </div>
+            {this.mapElement(8, 12)}
           </>
         );
       case 3:
         return (
           <>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[14].imgPath
-                )
-              }
-            >
-              <p>Category 4 Subcategory 1</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[3].imgPath
-                )
-              }
-            >
-              <p>Category 4 Subcategory 2</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[7].imgPath
-                )
-              }
-            >
-              <p>Category 4 Subcategory 3</p>
-            </div>
-            <div
-              className="box"
-              onMouseEnter={() =>
-                this.onHoverSub(
-                  this.props.productData[11].imgPath
-                )
-              }
-            >
-              <p>Category 4 Subcategory 4</p>
-            </div>
+            {this.mapElement(12, 16)}
           </>
         );
       default:
@@ -205,6 +61,7 @@ export default class NavProductSection extends Component {
       selectedIndex: index
     });
   }
+
   onHoverSub(url) {
     this.setState({
       selectedImg: url
