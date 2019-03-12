@@ -313,10 +313,12 @@ export default class HomePage extends Component {
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
-            alignItems: "center"
+            alignItems: "center",
+            marginTop: "100px"
           }}
         >
           <h3>Our clients</h3>
+          <p>________</p>
           <ClientSlider />
         </div>
       </div>

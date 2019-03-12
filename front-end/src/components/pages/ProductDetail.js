@@ -5,8 +5,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import { getProduct } from "../../api/product";
 import RelevantCarousel from "../molecules/RelevantCarousel";
-import ExpandCollapse from 'react-expand-collapse';
-
+import ExpandCollapse from "react-expand-collapse";
+import "../styles/pages/ProductDetail.scss";
 
 export default class ProductPage extends Component {
   state = {
@@ -24,7 +24,6 @@ export default class ProductPage extends Component {
     console.log(this.state.relevantProduct);
   }
   render() {
-
     return (
       <>
         <div
@@ -62,62 +61,85 @@ export default class ProductPage extends Component {
                     <ProductView productDetail={this.state.productDetail} />
                   </div>
 
-
-                  <TabNav
-                    items={[
-                      {
-                        title: "Product Detail",
-                        inside: <p>{this.state.productDetail.description}</p>
-                      },
-                      {
-                        title: "Parameters",
-                        inside: <p>{this.state.productDetail.productDetail.specs}</p>
-                      },
-                      {
-                        title: "Case Study",
-                        inside:
-                          <ExpandCollapse
-                            previewHeight="300px"
-                          >
-                            <>
-                              <div style={{
+                  <div>
+                    <TabNav
+                      items={[
+                        {
+                          title: "Product Detail",
+                          inside: <p>{this.state.productDetail.description}</p>
+                        },
+                        {
+                          title: "Parameters",
+                          inside: (
+                            <p>
+                              {this.state.productDetail.productDetail.specs}
+                            </p>
+                          )
+                        },
+                        {
+                          title: "Case Study",
+                          inside: (
+                            <div
+                              style={{
+                                overflow: "scroll",
                                 height: "500px",
-                                width: "500px",
-                                backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link1})`,
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "center center",
-                                backgroundSize: "contain"
-                              }} />
-                              <div style={{
-                                height: "500px",
-                                width: "500px",
-                                backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link2})`,
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "center center",
-                                backgroundSize: "contain"
-                              }} />
-                              <div style={{
-                                height: "500px",
-                                width: "500px",
-                                backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link3})`,
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "center center",
-                                backgroundSize: "contain"
-                              }} />
-                            </>
-                          </ExpandCollapse>
-                      }
-                    ]}
-                  />
-
+                                minWidth: "60vw"
+                              }}
+                            >
+                              <div
+                                style={{
+                                  height: "500px",
+                                  width: "500px",
+                                  backgroundImage: `url(${
+                                    this.state.productDetail.productDetail
+                                      .showCase[0].link1
+                                  })`,
+                                  backgroundRepeat: "no-repeat",
+                                  backgroundPosition: "center center",
+                                  backgroundSize: "contain"
+                                }}
+                              />
+                              <div
+                                style={{
+                                  height: "500px",
+                                  width: "500px",
+                                  backgroundImage: `url(${
+                                    this.state.productDetail.productDetail
+                                      .showCase[0].link2
+                                  })`,
+                                  backgroundRepeat: "no-repeat",
+                                  backgroundPosition: "center center",
+                                  backgroundSize: "contain"
+                                }}
+                              />
+                              <div
+                                style={{
+                                  height: "500px",
+                                  width: "500px",
+                                  backgroundImage: `url(${
+                                    this.state.productDetail.productDetail
+                                      .showCase[0].link3
+                                  })`,
+                                  backgroundRepeat: "no-repeat",
+                                  backgroundPosition: "center center",
+                                  backgroundSize: "contain"
+                                }}
+                              />
+                            </div>
+                          )
+                        }
+                      ]}
+                    />
+                  </div>
                 </div>
-
               ) : (
-                  <CircularProgress />
-                )}
+                <CircularProgress />
+              )}
             </div>
             <div style={{ marginBottom: "50px" }}>
-              {console.log(`props items passing si +` + this.state.relevantProduct)}
+              {console.log(
+                `props items passing si +` + this.state.relevantProduct
+              )}
               <RelevantCarousel items={this.state.relevantProduct} />
             </div>
           </Paper>
