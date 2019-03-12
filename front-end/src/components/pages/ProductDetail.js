@@ -5,6 +5,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import { getProduct } from "../../api/product";
 import RelevantCarousel from "../molecules/RelevantCarousel";
+import ExpandCollapse from 'react-expand-collapse';
 
 
 export default class ProductPage extends Component {
@@ -61,6 +62,7 @@ export default class ProductPage extends Component {
                     <ProductView productDetail={this.state.productDetail} />
                   </div>
 
+
                   <TabNav
                     items={[
                       {
@@ -74,36 +76,42 @@ export default class ProductPage extends Component {
                       {
                         title: "Case Study",
                         inside:
-                          <>
-                            <div style={{
-                              height: "500px",
-                              width: "500px",
-                              backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link1})`,
-                              backgroundRepeat: "no-repeat",
-                              backgroundPosition: "center center",
-                              backgroundSize: "contain"
-                            }} />
-                            <div style={{
-                              height: "500px",
-                              width: "500px",
-                              backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link2})`,
-                              backgroundRepeat: "no-repeat",
-                              backgroundPosition: "center center",
-                              backgroundSize: "contain"
-                            }} />
-                            <div style={{
-                              height: "500px",
-                              width: "500px",
-                              backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link3})`,
-                              backgroundRepeat: "no-repeat",
-                              backgroundPosition: "center center",
-                              backgroundSize: "contain"
-                            }} />
-                          </>
+                          <ExpandCollapse
+                            previewHeight="300px"
+                          >
+                            <>
+                              <div style={{
+                                height: "500px",
+                                width: "500px",
+                                backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link1})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center center",
+                                backgroundSize: "contain"
+                              }} />
+                              <div style={{
+                                height: "500px",
+                                width: "500px",
+                                backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link2})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center center",
+                                backgroundSize: "contain"
+                              }} />
+                              <div style={{
+                                height: "500px",
+                                width: "500px",
+                                backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link3})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center center",
+                                backgroundSize: "contain"
+                              }} />
+                            </>
+                          </ExpandCollapse>
                       }
                     ]}
                   />
+
                 </div>
+
               ) : (
                   <CircularProgress />
                 )}

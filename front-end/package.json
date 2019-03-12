@@ -15,6 +15,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-expand-collapse": "^0.2.0",
     "react-image-magnify": "^2.7.4",
     "react-items-carousel": "^2.3.0",
     "react-paginate": "^6.3.0",
