@@ -34,11 +34,23 @@ router.get("/:id", async (req, res) => {
   let productCategory = productDetail[0].category
   console.log(`category id ` + productCategory)
 
-  let relevantProducts = await global.Product.find({ category: productCategory }).populate("productDetail");
+  let AllRelevantProduct = await global.Product.find({ category: productCategory }).populate("productDetail");
+
+  let relevantProduct = []
+
+  for (let i = 0; i < 4; i++) {
+    let index = 0;
+    do {
+      index = Math.floor(Math.random() * AllRelevantProduct.length)
+    } while (AllRelevantProduct[index]._id == id)
+    relevantProduct.push(AllRelevantProduct[index])
+    AllRelevantProduct.splice(index, 1)
+
+  }
 
   res.json({
     productDetail: productDetail,
-    relevantProducts: relevantProducts
+    relevantProduct: relevantProduct
   });
 });
 

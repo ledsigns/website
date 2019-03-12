@@ -6,31 +6,24 @@ import Paper from "@material-ui/core/Paper";
 import { getProduct } from "../../api/product";
 import RelevantCarousel from "../molecules/RelevantCarousel";
 
-const carouselData = [
-  { caption: "Product 1", url: "/" },
-  { caption: "Product 2", url: "/" },
-  { caption: "Product 3", url: "/" },
-  { caption: "Product 4", url: "/" }
-];
+
 export default class ProductPage extends Component {
   state = {
-    productDetail: null
+    productDetail: null,
+    relevantProduct: null
   };
   async componentDidMount() {
     let newProductDetail = await getProduct(this.props.match.params.id);
-    console.log("newProductDetail");
-    console.log(newProductDetail);
     this.setState({
-      productDetail: newProductDetail.productDetail[0]
+      productDetail: newProductDetail.productDetail[0],
+      relevantProduct: newProductDetail.relevantProduct
     });
+    console.log("updated State");
+    console.log(this.state.productDetail);
+    console.log(this.state.relevantProduct);
   }
   render() {
-    const carouselElements = [
-      {
-        img:
-          "https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-      }
-    ];
+
     return (
       <>
         <div
@@ -86,11 +79,12 @@ export default class ProductPage extends Component {
                   />
                 </div>
               ) : (
-                <CircularProgress />
-              )}
+                  <CircularProgress />
+                )}
             </div>
             <div style={{ marginBottom: "50px" }}>
-              <RelevantCarousel items={carouselData} />
+              {console.log(`props items passing si +`+this.state.relevantProduct)}
+              <RelevantCarousel items={this.state.relevantProduct} />
             </div>
           </Paper>
         </div>
