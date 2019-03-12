@@ -69,11 +69,37 @@ export default class ProductPage extends Component {
                       },
                       {
                         title: "Parameters",
-                        inside: <p>Parameters</p>
+                        inside: <p>{this.state.productDetail.productDetail.specs}</p>
                       },
                       {
                         title: "Case Study",
-                        inside: <p>Case Study</p>
+                        inside:
+                          <>
+                            <div style={{
+                              height: "500px",
+                              width: "500px",
+                              backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link1})`,
+                              backgroundRepeat: "no-repeat",
+                              backgroundPosition: "center center",
+                              backgroundSize: "contain"
+                            }} />
+                            <div style={{
+                              height: "500px",
+                              width: "500px",
+                              backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link2})`,
+                              backgroundRepeat: "no-repeat",
+                              backgroundPosition: "center center",
+                              backgroundSize: "contain"
+                            }} />
+                            <div style={{
+                              height: "500px",
+                              width: "500px",
+                              backgroundImage: `url(${this.state.productDetail.productDetail.showCase[0].link3})`,
+                              backgroundRepeat: "no-repeat",
+                              backgroundPosition: "center center",
+                              backgroundSize: "contain"
+                            }} />
+                          </>
                       }
                     ]}
                   />
@@ -83,7 +109,7 @@ export default class ProductPage extends Component {
                 )}
             </div>
             <div style={{ marginBottom: "50px" }}>
-              {console.log(`props items passing si +`+this.state.relevantProduct)}
+              {console.log(`props items passing si +` + this.state.relevantProduct)}
               <RelevantCarousel items={this.state.relevantProduct} />
             </div>
           </Paper>
