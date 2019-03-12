@@ -10,7 +10,7 @@ import ItemsCarousel from "react-items-carousel";
 import Fade from "@material-ui/core/Fade";
 import Paper from "@material-ui/core/Paper";
 import NavProductSection from "../molecules/NavProductSection";
-import { getNavBarData } from "../../api/navBar"
+import { getNavBarData } from "../../api/navBar";
 
 const styles = theme => ({
   root: {
@@ -28,7 +28,6 @@ class NavSection extends Component {
 
   async componentDidMount() {
     let newData = await getNavBarData();
-    console.log(newData);
 
     let categoryData = newData.categoryArray.map(element => {
       return {
@@ -38,9 +37,8 @@ class NavSection extends Component {
       };
     });
     this.setState({
-      categoryData: categoryData,
+      categoryData: categoryData
     });
-    console.log(`updated state is ` + JSON.stringify(this.state.categoryData));
 
     let productData = newData.productArray.map(element => {
       return {
@@ -50,9 +48,8 @@ class NavSection extends Component {
       };
     });
     this.setState({
-      productData: productData,
+      productData: productData
     });
-    console.log(`updated state is ` + JSON.stringify(this.state.productData));
   }
 
   onnEnter = () => {
@@ -154,7 +151,10 @@ class NavSection extends Component {
                     <div style={{ backgroundColor: "white" }}>
                       <div className="slider-element">
                         <div className="slider-nested">
-                          <NavProductSection categoryData={this.state.categoryData} productData={this.state.productData} />
+                          <NavProductSection
+                            categoryData={this.state.categoryData}
+                            productData={this.state.productData}
+                          />
                         </div>
                       </div>
                     </div>
@@ -196,8 +196,8 @@ class NavSection extends Component {
                   </ItemsCarousel>
                 </>
               ) : (
-                  false
-                )}
+                false
+              )}
             </div>
           </Fade>
           {/*  */}

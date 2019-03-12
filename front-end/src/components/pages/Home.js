@@ -6,6 +6,8 @@ import { getHomePageData } from "../../api/homePage";
 import SearchBar from "material-ui-search-bar";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Paper from "@material-ui/core/Paper";
+import Dropdown from "../molecules/Dropdown";
+import ClientSlider from "../atoms/clientSlider";
 
 const elements = [
   {
@@ -19,16 +21,87 @@ const elements = [
     caption: "Hai"
   }
 ];
+const options = ["Categories", "Vendor", "Products"];
+
+function sortData(selectedIndex, data, searchText) {
+  let toReturn = [];
+  console.log("data");
+  console.log(data);
+  console.log("selectedIndex");
+  console.log(selectedIndex);
+  console.log("searchText");
+  console.log(searchText);
+  let reg = new RegExp(`${searchText}`, "i");
+  let elements;
+  switch (selectedIndex) {
+    case 0:
+      elements = data.categories;
+      for (let i = 0; i < elements.length; i++) {
+        if (elements[i].name.match(reg)) {
+          toReturn.push({
+            caption: elements[i].name,
+            url: `/category/${elements[i]._id}`,
+            imgPath: elements[i].categoryLogo[0].link
+          });
+        }
+      }
+      break;
+    case 1:
+      elements = data.vendors;
+      for (let i = 0; i < elements.length; i++) {
+        if (elements[i].name.match(reg)) {
+          toReturn.push({
+            caption: elements[i].name,
+            // url: `/category/${elements[i]._id}`,
+            imgPath: elements[i].vendorLogo[0].link
+          });
+        }
+      }
+      break;
+    case 2:
+      elements = data.productDetails;
+      for (let i = 0; i < elements.length; i++) {
+        if (elements[i].specs.match(reg)) {
+          toReturn.push({
+            caption: elements[i].specs,
+            // url: `/category/${elements[i]._id}`,
+            imgPath: elements[i].images[0].link
+          });
+        }
+      }
+      break;
+  }
+  return toReturn;
+}
 export default class HomePage extends Component {
   state = {
+    data: null,
+    anchorEl: null,
+    selectedIndex: 0,
     categories: null,
-    searchText: null,
-    searchResult: null
+    searchText: "",
+    searchResult: null,
+    searchGroup: null
+  };
+  handleClickListItem = event => {
+    this.setState({
+      anchorEl: event.currentTarget
+    });
+  };
+
+  handleMenuItemClick = (event, index) => {
+    this.setState({
+      selectedIndex: index,
+      anchorEl: null
+    });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
   };
 
   async componentDidMount() {
     let newData = await getHomePageData();
-    console.log(newData);
     let alteredData = newData.categories.map(element => {
       return {
         caption: element.name,
@@ -37,29 +110,36 @@ export default class HomePage extends Component {
       };
     });
     this.setState({
+      data: newData,
       categories: alteredData,
       searchResult: alteredData
     });
-    console.log(`updated state is ` + JSON.stringify(this.state.searchResult));
   }
 
-  searchCategory(value) {
-    this.setState({ searchText: value }, () => {
-      let categories = this.state.categories;
-      let searchText = this.state.searchText;
-      let returnCategories = [];
-      let reg = new RegExp(`${searchText}`, "i");
-      categories.forEach((searchCategory, i) => {
-        if (categories[i].caption.match(reg)) {
-          returnCategories.push(searchCategory);
-        }
-      });
-      console.log(`searchResult are ` + JSON.stringify(returnCategories));
-      this.setState({ searchResult: returnCategories });
-    });
+  onChangeSearch(value) {
+    this.setState({ searchText: value });
+
+    //     let returnCategories = [];
+    //     let reg = new RegExp(`${searchText}`, "i");
+    //     categories.forEach((searchCategory, i) => {
+    //       if (categories[i].caption.match(reg)) {
+    //         returnCategories.push(searchCategory);
+    //       }
+    //     });
+    //     console.log(`searchResult are ` + JSON.stringify(returnCategories));
+    //     this.setState({ searchResult: returnCategories });
+    //   // });
   }
 
   render() {
+    let toShow;
+    if (this.state.data) {
+      toShow = sortData(
+        this.state.selectedIndex,
+        this.state.data,
+        this.state.searchText
+      );
+    }
     return (
       <div
         style={{
@@ -94,71 +174,151 @@ export default class HomePage extends Component {
             your requirements.
           </p>
         </div>
-        {/* <div className="about-us">
-          <h4>About Us </h4>
-          <p>
-            CUSTOMIZED FOR YOU As a leader in the industry, Led Signs Pte Ltd
-            has a wealth of knowledge and expertise that’s incomparable. We
-            utilize this experience to provide both companies and individuals
-            with quality and innovative products they can truly count on. In
-            addition, we ensure that we stay ahead of the industry curve by
-            using the latest technologies. Rest assured that no matter what you
-            need, you can rely on us to provide the absolute best. Keep browsing
-            through our site to learn more.
-          </p>
-        </div>
-        <div className="specialisation">
-          <h4>Specializations</h4>
-          <p>
-            The selection of products manufactured by LED Signs Pte Ltd are not
-            only of the industrial leading quality, but are also available in a
-            variety of options to ensure you find exactly what you’re looking
-            for. With top-of-the-line materials, cutting-edge production
-            technologies and a highly qualified team, we guarantee complete
-            satisfaction.
-          </p>
-        </div> */}
 
         {this.state.categories ? (
+          // <div
+          //   style={{
+          //     width: "100%",
+          //     display: "flex",
+          //     flexDirection: "column",
+          //     alignItems: "center"
+          //   }}
+          // >
+          //   <MuiThemeProvider>
+          //     <h2>View Categories</h2>
+          //     <SearchBar
+          //       onChange={value => this.searchCategory(value)}
+          //       // onRequestSearch={() => this.filterVenues(this.state.venues, this.state.seachText)}
+          //       style={{
+          //         margin: "0 auto",
+          //         maxWidth: 800
+          //       }}
+          //     />
+          //   </MuiThemeProvider>
+          //   <div
+          //     style={{
+          //       width: "80%",
+          //       paddingTop: "20px",
+          //       paddingBottom: "20px"
+          //     }}
+          //   >
+          //     <Paper>
+          //       <div style={{ paddingTop: "10px" }}>
+          //         <Gallery
+          //           width="90%"
+          //           numberPerPage={8}
+          //           data={this.state.searchResult}
+          //         />
+          //       </div>
+          //     </Paper>
+          //   </div>
+          // </div>
           <div
             style={{
-              width: "100%",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center"
+              justifyContent: "center",
+              textAlign: "center",
+              width: "100%"
             }}
           >
-            <MuiThemeProvider>
-              <SearchBar
-                onChange={value => this.searchCategory(value)}
-                // onRequestSearch={() => this.filterVenues(this.state.venues, this.state.seachText)}
-                style={{
-                  margin: "0 auto",
-                  maxWidth: 800
-                }}
-              />
-            </MuiThemeProvider>
+            <h2>Search out products now</h2>
             <div
               style={{
-                width: "80%",
-                paddingTop: "20px",
-                paddingBottom: "20px"
+                margin: "auto",
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+                width: "80%"
               }}
             >
-              <Paper>
-                <div style={{ paddingTop: "10px" }}>
-                  <Gallery
-                    width="90%"
-                    numberPerPage={8}
-                    data={this.state.searchResult}
-                  />
+              <div
+                style={{
+                  width: "15%"
+                }}
+              >
+                <Dropdown
+                  anchorEl={this.state.anchorEl}
+                  options={options}
+                  selectedIndex={this.state.selectedIndex}
+                  handleClickListItem={this.handleClickListItem.bind(this)}
+                  handleMenuItemClick={this.handleMenuItemClick.bind(this)}
+                  handleClose={this.handleClose.bind(this)}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: "83%"
+                }}
+              >
+                <div style={{ width: "100%" }}>
+                  <MuiThemeProvider>
+                    <div
+                      style={{
+                        minWidth: "100%",
+                        height: "66px",
+                        display: "flex",
+                        alignItems: "center"
+                      }}
+                    >
+                      <SearchBar
+                        onChange={this.onChangeSearch.bind(this)}
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                  </MuiThemeProvider>
                 </div>
-              </Paper>
+              </div>
+            </div>
+            <div>
+              <MuiThemeProvider>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center"
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "80%",
+                      paddingTop: "20px",
+                      paddingBottom: "20px"
+                    }}
+                  >
+                    <Paper>
+                      <div
+                        style={{
+                          paddingTop: "10px"
+                        }}
+                      >
+                        <Gallery width="90%" numberPerPage={8} data={toShow} />
+                      </div>
+                    </Paper>
+                  </div>
+                </div>
+              </MuiThemeProvider>
             </div>
           </div>
         ) : (
-            false
-          )}
+          false
+        )}
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center"
+          }}
+        >
+          <h3>Our clients</h3>
+          <ClientSlider />
+        </div>
       </div>
     );
   }

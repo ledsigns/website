@@ -10,33 +10,25 @@ export default class HomePage extends Component {
   async componentDidMount() {
     let categoryId = this.props.match.params.categoryId;
     let vendorId = this.props.match.params.vendorId;
-    console.log(`vendorId= ${vendorId}`)
-    console.log(`categoryId= ${categoryId}`)
     let products = await getProductByCategoryAndVendor(categoryId, vendorId);
-    console.log(`products =` + JSON.stringify(products))
     let galleryProduct = products.products.map(element => {
-      console.log("element");
-      console.log(element);
       return {
         caption: element.name,
         url: `/product/${element._id}`, // where generate the url for next page
         imgPath: element.productDetail.images[0].link
       };
     });
-    console.log("products.products");
-    console.log(products.products);
     this.setState({ products: galleryProduct });
   }
 
   render() {
-    console.log(`updated state is ` + JSON.stringify(this.state.products));
     return (
       <>
         {this.state.products ? (
           <Gallery numberPerPage={10} width="90%" data={this.state.products} />
         ) : (
-            false
-          )}
+          false
+        )}
       </>
     );
   }

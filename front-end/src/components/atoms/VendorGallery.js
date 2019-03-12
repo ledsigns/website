@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../styles/molecules/cards-gallery.css";
 
 function GalleryItem(src, caption, url) {
-  console.log(url);
   return (
     <div>
       <div class="card border-0 transform-on-hover">
