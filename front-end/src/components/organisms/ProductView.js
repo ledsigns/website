@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactImageMagnify from "react-image-magnify";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import ReactSlick from "react-slick";
 
 const elements = [
   {
@@ -13,6 +12,8 @@ const elements = [
 ];
 export default class Product extends Component {
   render() {
+    console.log("this.props.productDetail");
+    console.log(this.props.productDetail);
     const details = this.props.productDetail;
     return (
       <div
@@ -40,24 +41,37 @@ export default class Product extends Component {
                   // overflow: "hidden"
                 }
               }
-              elements={details.productDetail.images}
+              elements={}
             /> */}
-            <Carousel
-              showStatus={false}
-              infiniteLoop={true}
-              showThumbs={this.props.showThumbs}
-              showArrows={true}
+            <ReactSlick
+              {...{
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }}
             >
-              {details.productDetail.images.map((element, index) => (
-                <div key={index} className="carousel-element">
-                  <img
-                    style={this.props.customStyles}
-                    alt="283409"
-                    src={element.link}
+              {details.productDetail.images.map((src, index) => (
+                <div key={index}>
+                  <ReactImageMagnify
+                    {...{
+                      smallImage: {
+                        alt: "Wristwatch by Versace",
+                        isFluidWidth: true,
+                        src: src.link
+                      },
+                      largeImage: {
+                        src: src.link,
+                        width: 1000,
+                        height: 1000
+                      },
+                      lensStyle: { backgroundColor: "rgba(0,0,0,0)" }
+                    }}
                   />
                 </div>
               ))}
-            </Carousel>
+            </ReactSlick>
             {/* details.productDetail.images.map(element => ({
               img: element.link,
             src: element.link

@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import "../styles/organisms/BottomSection.scss";
-import Slider from "../atoms/clientSlider";
+// import Slider from "../atoms/clientSlider";
 const MyStatelessComponent = props => (
   <>
     <div className="bottom-section">
       <div className="items">
         <div className="item">
           <bold>
-            <h5>Home</h5>
+            <a href="/" style={{ color: 'black' }}>
+              <h5>Home</h5>
+            </a>
           </bold>
         </div>
         <div className="item">
@@ -15,7 +17,7 @@ const MyStatelessComponent = props => (
             <h5>Products</h5>
           </bold>
           {props.categoryData ? (
-            <>
+            <div style={{ paddingTop: '20px' }}>
               {props.categoryData.map(category => (
                 <>
                   {console.log(`passed Id at bottom ` + JSON.stringify(category))}
@@ -24,7 +26,7 @@ const MyStatelessComponent = props => (
                   </a>
                 </>
               ))}
-            </>
+            </div>
           ) : (
               false
             )}
@@ -61,11 +63,11 @@ const MyStatelessComponent = props => (
         </div>
       </div>
 
-      <div className="slider">
+      {/* <div className="slider">
         <h3>Our clients</h3>
         <p>________</p>
         <Slider />
-      </div>
+      </div> */}
     </div>
   </>
 );

@@ -74,7 +74,7 @@ class NavSection extends Component {
                       justifyContent: "space-around"
                     }}
                   >
-                    <a href="/">
+                    <a href="/" style={{ color: 'black' }}>
                       <div className="navbar-element">
                         <p>Home</p>
                       </div>
