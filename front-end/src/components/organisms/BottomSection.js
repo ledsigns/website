@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/organisms/BottomSection.scss";
-// import Slider from "../atoms/clientSlider";
+import Slider from "../atoms/clientSlider";
 const MyStatelessComponent = props => (
   <>
     <div className="bottom-section">
@@ -63,11 +63,11 @@ const MyStatelessComponent = props => (
         </div>
       </div>
 
-      {/* <div className="slider">
+      <div className="slider">
         <h3>Our clients</h3>
         <p>________</p>
         <Slider />
-      </div> */}
+      </div>
     </div>
   </>
 );
