@@ -47,8 +47,8 @@ export default class clientSlider extends Component {
               >
                 <div
                   style={{
-                    height: "120px",
-                    width: "120px",
+                    height: "130px",
+                    width: "130px",
                     backgroundImage: `url(${image})`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center center",
