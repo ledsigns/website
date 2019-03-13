@@ -30,7 +30,8 @@ class App extends Component {
       return {
         caption: element.name,
         url: `/productByCategory/${element._id}`, // where generate the url for next page
-        imgPath: element.categoryLogo[0].link
+        imgPath: element.categoryLogo[0].link,
+        id: element._id
       };
     });
 

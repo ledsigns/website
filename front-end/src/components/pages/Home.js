@@ -271,8 +271,8 @@ export default class HomePage extends Component {
             </div>
           </Fade>
         ) : (
-          false
-        )}
+            false
+          )}
         <div
           style={{
             width: "100%",
@@ -283,9 +283,9 @@ export default class HomePage extends Component {
             marginTop: "100px"
           }}
         >
-          <h3>Our clients</h3>
+          {/* <h3>Our clients</h3>
           <p>________</p>
-          <ClientSlider />
+          <ClientSlider /> */}
         </div>
       </div>
     );

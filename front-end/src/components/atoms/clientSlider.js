@@ -13,7 +13,7 @@ var settings = {
   speed: 500,
   slidesToShow: 9,
   slidesToScroll: 1,
-  autoplay: true
+  autoplay: true,
 };
 export default class clientSlider extends Component {
   render() {
@@ -47,8 +47,8 @@ export default class clientSlider extends Component {
               >
                 <div
                   style={{
-                    height: "100px",
-                    width: "100px",
+                    height: "120px",
+                    width: "120px",
                     backgroundImage: `url(${image})`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center center",

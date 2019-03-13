@@ -10,7 +10,7 @@ export default class NavProductSection extends Component {
       "https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/product/LEDMAN+COB+Display/20180820044507_391976.jpg"
   };
 
-  async componentDidMount() {}
+  async componentDidMount() { }
 
   mapProduct(start, end) {
     let table = [];
@@ -34,7 +34,7 @@ export default class NavProductSection extends Component {
   mapCategory(start, end, index) {
     let table = [];
 
-    for (let i = start; i < end; i++, index++) {
+    for (let i = start; i < end; i++ , index++) {
       console.log(
         `categoryData is ` + JSON.stringify(this.props.categoryData[i])
       );
@@ -82,7 +82,7 @@ export default class NavProductSection extends Component {
   render() {
     return (
       <>
-        <div className="navbar-section">
+        <div className="navbar-section" >
           {this.props.categoryData && this.props.productData ? (
             <>
               <div className="category1">{this.mapCategory(0, 4, 0)}</div>
@@ -94,8 +94,8 @@ export default class NavProductSection extends Component {
               </div>
             </>
           ) : (
-            false
-          )}
+              false
+            )}
         </div>
       </>
     );

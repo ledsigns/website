@@ -12,6 +12,8 @@ export default class ControlledCarousel extends Component {
           infiniteLoop={true}
           showThumbs={this.props.showThumbs}
           showArrows={true}
+          autoPlay={true}
+          interval={4000}
         >
           {this.props.elements.map((element, index) => (
             <div key={index} className="carousel-element">

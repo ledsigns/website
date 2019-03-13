@@ -81,8 +81,8 @@ export default class ProductPage extends Component {
                           inside: (
                             <div
                               style={{
-                                overflow: "scroll",
-                                height: "500px",
+                                overflowY: "scroll",
+                                height: "450px",
                                 minWidth: "60vw"
                               }}
                             >
@@ -93,7 +93,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link1
-                                  })`,
+                                    })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -106,7 +106,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link2
-                                  })`,
+                                    })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -119,7 +119,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link3
-                                  })`,
+                                    })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -133,8 +133,8 @@ export default class ProductPage extends Component {
                   </div>
                 </div>
               ) : (
-                <CircularProgress />
-              )}
+                  <CircularProgress />
+                )}
             </div>
             <div style={{ marginBottom: "50px" }}>
               {console.log(

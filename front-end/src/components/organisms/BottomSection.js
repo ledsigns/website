@@ -17,14 +17,17 @@ const MyStatelessComponent = props => (
           {props.categoryData ? (
             <>
               {props.categoryData.map(category => (
-                <a href={`/category/${category._id}`}>
-                  <p>{category.caption}</p>
-                </a>
+                <>
+                  {console.log(`passed Id at bottom ` + JSON.stringify(category))}
+                  < a style={{ color: 'black' }} href={`/productByCategory/${category.id}`}>
+                    <p>{category.caption}</p>
+                  </a>
+                </>
               ))}
             </>
           ) : (
-            false
-          )}
+              false
+            )}
         </div>
         <div className="item">
           <bold>
@@ -59,7 +62,8 @@ const MyStatelessComponent = props => (
       </div>
 
       <div className="slider">
-        <h5>Our Clients</h5>
+        <h3>Our clients</h3>
+        <p>________</p>
         <Slider />
       </div>
     </div>

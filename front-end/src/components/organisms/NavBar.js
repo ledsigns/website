@@ -24,7 +24,7 @@ class NavSection extends Component {
     productData: null
   };
 
-  async componentDidMount() {}
+  async componentDidMount() { }
 
   onnEnter = () => {
     this.setState({ show: true });
@@ -57,7 +57,7 @@ class NavSection extends Component {
                     display: "flex"
                   }}
                 >
-                  <div style={{ width: "20%" }}>
+                  <div style={{ width: "30%" }}>
                     <img
                       style={{ maxHeight: "100%", maxWidth: "100%" }}
                       src={logo}
@@ -124,7 +124,7 @@ class NavSection extends Component {
             <div>
               {show && this.props.categoryData && this.props.productData ? (
                 <>
-                  <ItemsCarousel numberOfCards={1} activeItemIndex={index}>
+                  <ItemsCarousel numberOfCards={1} activeItemIndex={index} >
                     <div style={{ backgroundColor: "white" }}>
                       <div className="slider-element">
                         <div className="slider-nested">
@@ -173,8 +173,8 @@ class NavSection extends Component {
                   </ItemsCarousel>
                 </>
               ) : (
-                false
-              )}
+                  false
+                )}
             </div>
           </Fade>
           {/*  */}
