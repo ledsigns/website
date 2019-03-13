@@ -8,9 +8,7 @@ import logo from "../../images/logo.png";
 import "../styles/molecules/AppBar.scss";
 import ItemsCarousel from "react-items-carousel";
 import Fade from "@material-ui/core/Fade";
-import Paper from "@material-ui/core/Paper";
 import NavProductSection from "../molecules/NavProductSection";
-import { getNavBarData } from "../../api/navBar";
 
 const styles = theme => ({
   root: {
@@ -26,31 +24,7 @@ class NavSection extends Component {
     productData: null
   };
 
-  async componentDidMount() {
-    let newData = await getNavBarData();
-
-    let categoryData = newData.categoryArray.map(element => {
-      return {
-        caption: element.name,
-        url: `/productByCategory/${element._id}`, // where generate the url for next page
-        imgPath: element.categoryLogo[0].link
-      };
-    });
-    this.setState({
-      categoryData: categoryData
-    });
-
-    let productData = newData.productArray.map(element => {
-      return {
-        caption: element.name,
-        url: `/product/${element._id}`, // where generate the url for next page
-        imgPath: element.productDetail.images[0].link
-      };
-    });
-    this.setState({
-      productData: productData
-    });
-  }
+  async componentDidMount() {}
 
   onnEnter = () => {
     this.setState({ show: true });
@@ -78,7 +52,10 @@ class NavSection extends Component {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div style={{ width: "85%" }}>
                 <Toolbar
-                  style={{ justifyContent: "space-around", display: "flex" }}
+                  style={{
+                    justifyContent: "space-around",
+                    display: "flex"
+                  }}
                 >
                   <div style={{ width: "20%" }}>
                     <img
@@ -145,15 +122,15 @@ class NavSection extends Component {
           </AppBar>
           <Fade in={show}>
             <div>
-              {show ? (
+              {show && this.props.categoryData && this.props.productData ? (
                 <>
                   <ItemsCarousel numberOfCards={1} activeItemIndex={index}>
                     <div style={{ backgroundColor: "white" }}>
                       <div className="slider-element">
                         <div className="slider-nested">
                           <NavProductSection
-                            categoryData={this.state.categoryData}
-                            productData={this.state.productData}
+                            categoryData={this.props.categoryData}
+                            productData={this.props.productData}
                           />
                         </div>
                       </div>

@@ -11,17 +11,51 @@ import BottomSection from "./components/organisms/BottomSection";
 import ProductVendorPage from "./components/pages/ProductVendor";
 import ProductByCategoryPage from "./components/pages/ProductByCategory";
 import testCollaps from "./components/pages/testCollaps";
+import { getNavBarData } from "./api/navBar";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./main.scss";
+import { CircularProgress } from "@material-ui/core";
 
 // import { BrowserRouter as Router, Route, Switch } from "react-router";
 
 class App extends Component {
+  state = {
+    productData: null,
+    categoryData: null
+  };
+  async componentDidMount() {
+    let newData = await getNavBarData();
+
+    let categoryData = newData.categoryArray.map(element => {
+      return {
+        caption: element.name,
+        url: `/productByCategory/${element._id}`, // where generate the url for next page
+        imgPath: element.categoryLogo[0].link
+      };
+    });
+
+    let productData = newData.productArray.map(element => {
+      return {
+        caption: element.name,
+        url: `/product/${element._id}`, // where generate the url for next page
+        imgPath: element.productDetail.images[0].link
+      };
+    });
+    this.setState({
+      productData: productData,
+      categoryData: categoryData
+    });
+  }
   render() {
+    console.log("categoryData");
+    console.log(this.state.categoryData);
     return (
       <div className="main" style={{ position: "relative" }}>
-        <NavBar />
+        <NavBar
+          categoryData={this.state.categoryData}
+          productData={this.state.productData}
+        />
         <HoverButton />
         <Router>
           <Switch>
@@ -44,13 +78,10 @@ class App extends Component {
               path="/productByCategory/:categoryId"
               component={ProductByCategoryPage}
             />
-            <Route exact
-              path="/abc"
-              component={testCollaps}
-            />
+            <Route exact path="/abc" component={testCollaps} />
           </Switch>
         </Router>
-        <BottomSection />
+        <BottomSection categoryData={this.state.categoryData} />
       </div>
     );
   }

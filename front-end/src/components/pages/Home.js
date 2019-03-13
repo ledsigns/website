@@ -8,6 +8,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Paper from "@material-ui/core/Paper";
 import Dropdown from "../molecules/Dropdown";
 import ClientSlider from "../atoms/clientSlider";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Fade from "@material-ui/core/Fade";
 
 const elements = [
   {
@@ -25,12 +27,6 @@ const options = ["Categories", "Vendor", "Products"];
 
 function sortData(selectedIndex, data, searchText) {
   let toReturn = [];
-  console.log("data");
-  console.log(data);
-  console.log("selectedIndex");
-  console.log(selectedIndex);
-  console.log("searchText");
-  console.log(searchText);
   let reg = new RegExp(`${searchText}`, "i");
   let elements;
   switch (selectedIndex) {
@@ -176,151 +172,108 @@ export default class HomePage extends Component {
         </div>
 
         {this.state.categories ? (
-          // <div
-          //   style={{
-          //     width: "100%",
-          //     display: "flex",
-          //     flexDirection: "column",
-          //     alignItems: "center"
-          //   }}
-          // >
-          //   <MuiThemeProvider>
-          //     <h2>View Categories</h2>
-          //     <SearchBar
-          //       onChange={value => this.searchCategory(value)}
-          //       // onRequestSearch={() => this.filterVenues(this.state.venues, this.state.seachText)}
-          //       style={{
-          //         margin: "0 auto",
-          //         maxWidth: 800
-          //       }}
-          //     />
-          //   </MuiThemeProvider>
-          //   <div
-          //     style={{
-          //       width: "80%",
-          //       paddingTop: "20px",
-          //       paddingBottom: "20px"
-          //     }}
-          //   >
-          //     <Paper>
-          //       <div style={{ paddingTop: "10px" }}>
-          //         <Gallery
-          //           width="90%"
-          //           numberPerPage={8}
-          //           data={this.state.searchResult}
-          //         />
-          //       </div>
-          //     </Paper>
-          //   </div>
-          // </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              textAlign: "center",
-              width: "100%"
-            }}
-          >
-            <h2>Search out products now</h2>
+          <Fade in={true} timeout={2000}>
             <div
               style={{
-                margin: "auto",
-                textAlign: "center",
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
-                width: "80%"
+                flexDirection: "column",
+                justifyContent: "center",
+                textAlign: "center",
+                width: "100%"
               }}
             >
+              <h2>Search Now</h2>
               <div
                 style={{
-                  width: "15%"
-                }}
-              >
-                <Dropdown
-                  anchorEl={this.state.anchorEl}
-                  options={options}
-                  selectedIndex={this.state.selectedIndex}
-                  handleClickListItem={this.handleClickListItem.bind(this)}
-                  handleMenuItemClick={this.handleMenuItemClick.bind(this)}
-                  handleClose={this.handleClose.bind(this)}
-                />
-              </div>
-              <div
-                style={{
+                  margin: "auto",
+                  textAlign: "center",
                   display: "flex",
-                  alignItems: "center",
-                  width: "83%"
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  width: "80%"
                 }}
               >
-                <div style={{ width: "100%" }}>
-                  <MuiThemeProvider>
-                    <div
-                      style={{
-                        minWidth: "100%",
-                        height: "66px",
-                        display: "flex",
-                        alignItems: "center"
-                      }}
-                    >
-                      <SearchBar
-                        onChange={this.onChangeSearch.bind(this)}
-                        style={{ width: "100%" }}
-                      />
-                    </div>
-                  </MuiThemeProvider>
-                </div>
-              </div>
-            </div>
-            <div>
-              <MuiThemeProvider>
                 <div
                   style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center"
+                    width: "15%"
                   }}
                 >
-                  <div
-                    style={{
-                      width: "80%",
-                      paddingTop: "20px",
-                      paddingBottom: "20px"
-                    }}
-                  >
-                    <Paper>
+                  <Dropdown
+                    anchorEl={this.state.anchorEl}
+                    options={options}
+                    selectedIndex={this.state.selectedIndex}
+                    handleClickListItem={this.handleClickListItem.bind(this)}
+                    handleMenuItemClick={this.handleMenuItemClick.bind(this)}
+                    handleClose={this.handleClose.bind(this)}
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "83%"
+                  }}
+                >
+                  <div style={{ width: "100%" }}>
+                    <MuiThemeProvider>
                       <div
                         style={{
-                          paddingTop: "10px"
+                          minWidth: "100%",
+                          height: "66px",
+                          display: "flex",
+                          alignItems: "center"
                         }}
                       >
-                        <Gallery width="90%" numberPerPage={8} data={toShow} />
+                        <SearchBar
+                          onChange={this.onChangeSearch.bind(this)}
+                          style={{ width: "100%" }}
+                        />
                       </div>
-                    </Paper>
+                    </MuiThemeProvider>
                   </div>
                 </div>
-              </MuiThemeProvider>
+              </div>
+              <div>
+                <MuiThemeProvider>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center"
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "80%",
+                        paddingTop: "20px",
+                        paddingBottom: "20px"
+                      }}
+                    >
+                      <Paper>
+                        <div
+                          style={{
+                            paddingTop: "10px"
+                          }}
+                        >
+                          <Gallery
+                            width="90%"
+                            numberPerPage={8}
+                            data={toShow}
+                          />
+                        </div>
+                      </Paper>
+                    </div>
+                  </div>
+                </MuiThemeProvider>
+              </div>
             </div>
-          </div>
+          </Fade>
         ) : (
-          false
+          <div style={{ width: "100%" }}>
+            <CircularProgress />
+          </div>
         )}
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "100px"
-          }}
-        >
-          <h3>Our clients</h3>
-          <p>________</p>
-          <ClientSlider />
-        </div>
       </div>
     );
   }

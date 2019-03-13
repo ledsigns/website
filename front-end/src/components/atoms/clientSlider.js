@@ -11,7 +11,7 @@ var settings = {
   dots: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 5,
+  slidesToShow: 9,
   slidesToScroll: 1,
   autoplay: true
 };
@@ -22,7 +22,7 @@ export default class clientSlider extends Component {
     );
 
     return (
-      <div style={{ height: "400px", width: "80%" }}>
+      <div style={{ height: "100px", width: "80%" }}>
         <Slider {...settings}>
           {images.map(image => (
             <div
@@ -47,8 +47,8 @@ export default class clientSlider extends Component {
               >
                 <div
                   style={{
-                    height: "200px",
-                    width: "200px",
+                    height: "100px",
+                    width: "100px",
                     backgroundImage: `url(${image})`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center center",
