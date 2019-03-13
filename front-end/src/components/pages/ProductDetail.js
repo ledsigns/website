@@ -93,7 +93,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link1
-                                    })`,
+                                  })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -106,7 +106,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link2
-                                    })`,
+                                  })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -119,7 +119,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link3
-                                    })`,
+                                  })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -133,10 +133,19 @@ export default class ProductPage extends Component {
                   </div>
                 </div>
               ) : (
-                  <CircularProgress />
-                )}
+                <CircularProgress />
+              )}
             </div>
-            <div style={{ marginBottom: "50px" }}>
+            <div
+              style={{
+                marginBottom: "50px",
+                marginTop: "240px",
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <h4>You may also like</h4>
               {console.log(
                 `props items passing si +` + this.state.relevantProduct
               )}
