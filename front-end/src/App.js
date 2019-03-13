@@ -10,11 +10,7 @@ import HoverButton from "./components/molecules/Hover";
 import BottomSection from "./components/organisms/BottomSection";
 import ProductByVendorPage from "./components/pages/ProductByVendor";
 import ProductByCategoryPage from "./components/pages/ProductByCategory";
-<<<<<<< HEAD
-import testCollaps from "./components/pages/testCollaps";
 import { getNavBarData } from "./api/navBar";
-=======
->>>>>>> 5a09651aa3d62c48154c5900196d289c8cb8bef7
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./main.scss";
@@ -66,11 +62,7 @@ class App extends Component {
             <Route exact path="/category/:id" component={VendorsPage} />
             <Route exact path="/test" component={TestPage} />
             <Route exact path="/product/:id" component={ProductDetailPage} />
-            <Route
-              exact
-              path="/vendor/:id"
-              component={ProductByVendorPage}
-            />
+            <Route exact path="/vendor/:id" component={ProductByVendorPage} />
             <Route
               exact
               path="/category/:categoryId/vendor/:vendorId"
