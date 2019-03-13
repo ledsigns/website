@@ -52,20 +52,21 @@ function sortData(selectedIndex, data, searchText) {
         if (elements[i].name.match(reg)) {
           toReturn.push({
             caption: elements[i].name,
-            // url: `/category/${elements[i]._id}`,
+            url: `/vendor/${elements[i]._id}`,
             imgPath: elements[i].vendorLogo[0].link
           });
         }
       }
       break;
     case 2:
-      elements = data.productDetails;
+      elements = data.products;
       for (let i = 0; i < elements.length; i++) {
-        if (elements[i].specs.match(reg)) {
+        if (elements[i].name.match(reg)) {
+          console.log(`productDetails is ` + JSON.stringify(data))
           toReturn.push({
-            caption: elements[i].specs,
-            // url: `/category/${elements[i]._id}`,
-            imgPath: elements[i].images[0].link
+            caption: elements[i].name,
+            url: `/product/${elements[i]._id}`,
+            imgPath: elements[i].productDetail.images[0].link
           });
         }
       }
@@ -305,8 +306,8 @@ export default class HomePage extends Component {
             </div>
           </div>
         ) : (
-          false
-        )}
+            false
+          )}
         <div
           style={{
             width: "100%",

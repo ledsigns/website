@@ -8,9 +8,8 @@ import ProductsPage from "./components/pages/Products";
 import ProductDetailPage from "./components/pages/ProductDetail";
 import HoverButton from "./components/molecules/Hover";
 import BottomSection from "./components/organisms/BottomSection";
-import ProductVendorPage from "./components/pages/ProductVendor";
+import ProductByVendorPage from "./components/pages/ProductByVendor";
 import ProductByCategoryPage from "./components/pages/ProductByCategory";
-import testCollaps from "./components/pages/testCollaps";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./main.scss";
@@ -31,8 +30,8 @@ class App extends Component {
             <Route exact path="/product/:id" component={ProductDetailPage} />
             <Route
               exact
-              path="/product/:id/vendor"
-              component={ProductVendorPage}
+              path="/vendor/:id"
+              component={ProductByVendorPage}
             />
             <Route
               exact
@@ -43,10 +42,6 @@ class App extends Component {
               exact
               path="/productByCategory/:categoryId"
               component={ProductByCategoryPage}
-            />
-            <Route exact
-              path="/abc"
-              component={testCollaps}
             />
           </Switch>
         </Router>
