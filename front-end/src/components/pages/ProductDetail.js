@@ -42,7 +42,7 @@ export default class ProductPage extends Component {
               style={{
                 margin: "50px 50px 50px 50px",
                 width: "70vw",
-                height: "80vh",
+                height: "140vh",
                 display: "flex",
                 justifyContent: "center"
                 // verticalAlign: "middle",
@@ -82,8 +82,8 @@ export default class ProductPage extends Component {
                             <div
                               style={{
                                 overflowY: "scroll",
-                                height: "420px",
-                                minWidth: "60vw"
+                                height: "50%",
+                                minWidth: "250%"
                               }}
                             >
                               <div
