@@ -14,12 +14,17 @@ import Fade from "@material-ui/core/Fade";
 const elements = [
   {
     img:
-      "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
+      "http://www.unilumin.com/upload/Banner/userfaceIII.jpg",
     caption: "Hai"
   },
   {
     img:
-      "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
+      "http://www.unilumin.com/upload/Banner/UTV3banner.jpg",
+    caption: "Hai"
+  },
+  {
+    img:
+      "http://www.unilumin.com/upload/2019011817390706.jpg",
     caption: "Hai"
   }
 ];

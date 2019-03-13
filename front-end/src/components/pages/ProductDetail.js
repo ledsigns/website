@@ -82,7 +82,7 @@ export default class ProductPage extends Component {
                             <div
                               style={{
                                 overflowY: "scroll",
-                                height: "450px",
+                                height: "420px",
                                 minWidth: "60vw"
                               }}
                             >
