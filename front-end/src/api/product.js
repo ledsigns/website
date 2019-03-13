@@ -23,3 +23,11 @@ export function getProductByCategory(id) {
     }
   });
 }
+
+export function getProductByVendor(id) {
+  return api.get(`/product/vendor/${id}`).then(res => {
+    if (res) {
+      return res.data;
+    }
+  });
+}

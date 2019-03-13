@@ -2,16 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/vendor/:id", async (req, res) => {
-  console.log("smthing running");
-  var id = req.params.id;
-  let products = await global.Product.find({ vendor: id });
-
-  res.json({
-    products: products
-  });
-})
-
 router.get("/category/:id", async (req, res) => {
   console.log("smthing running");
   var id = req.params.id;
