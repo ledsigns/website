@@ -1,9 +1,6 @@
-const bodyParser = require("body-parser");
-const cors = require("cors");
 const sls = require("serverless-http");
 const express = require("express");
 const path = require("path");
-const multer = require("multer");
 
 //Init DB
 require("./db/dbInit");
@@ -11,7 +8,7 @@ require("./db/dbInit");
 // Create server
 const server = express();
 
-server.use(function (req, res, next) {
+server.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -26,7 +23,7 @@ const productRouter = require("./routes/product");
 const vendorRouter = require("./routes/vendor");
 const categoryRouter = require("./routes/category");
 const homePage = require("./routes/homePage");
-const navBar = require("./routes/navBar")
+const navBar = require("./routes/navBar");
 
 //server side routers
 server.use("/test", testRouter);
