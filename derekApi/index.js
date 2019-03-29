@@ -1,12 +1,16 @@
 const sls = require("serverless-http");
 const express = require("express");
 const path = require("path");
+const bodyParser = require("body-parser");
 
 //Init DB
 require("./db/dbInit");
 
 // Create server
 const server = express();
+
+// parse application/json
+server.use(bodyParser.json());
 
 server.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -24,6 +28,7 @@ const vendorRouter = require("./routes/vendor");
 const categoryRouter = require("./routes/category");
 const homePage = require("./routes/homePage");
 const navBar = require("./routes/navBar");
+const authRouter = require("./routes/auth");
 
 //server side routers
 server.use("/test", testRouter);
@@ -32,6 +37,7 @@ server.use("/vendor", vendorRouter);
 server.use("/category", categoryRouter);
 server.use("/homePage", homePage);
 server.use("/navBar", navBar);
+server.use("/auth", authRouter);
 
 // Handle errors by returning JSON
 server.use((error, req, res, next) => {
