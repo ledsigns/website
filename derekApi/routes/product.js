@@ -17,50 +17,70 @@ router.get("/category/:id", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  console.log("smthing running");
   var id = req.params.id;
-
-  let productDetail = await global.Product.find({ _id: id }).populate(
-    "productDetail"
-  );
-
-  //find other products under same category
-  let productCategory = productDetail[0].category;
-  console.log(`category id ` + productCategory);
-
-  let AllRelevantProduct = await global.Product.find({
-    category: productCategory
-  }).populate("productDetail");
-
-  let relevantProduct = [];
-
-  for (let i = 0; i < 4; i++) {
-    let index = 0;
-    do {
-      index = Math.floor(Math.random() * AllRelevantProduct.length);
-    } while (AllRelevantProduct[index]._id == id);
-    relevantProduct.push(AllRelevantProduct[index]);
-    AllRelevantProduct.splice(index, 1);
-  }
-
-  res.json({
-    productDetail: productDetail,
-    relevantProduct: relevantProduct
-  });
-});
-
-router.get("/test/:id", function(req, res, next) {
-  passport.authenticate("jwt", function(err, user, info) {
-    if (err) {
-      return next(err);
-    }
+  let productDetail;
+  await passport.authenticate("jwt", async function(err, user, info) {
+    // if (err) {
+    //   return next(err);
+    // }
     if (user) {
-      return res.send("user");
+      productDetail = await global.Product.find({ _id: id }).populate(
+        "productDetail"
+      );
+
+      //find other products under same category
+      let productCategory = productDetail[0].category;
+
+      let AllRelevantProduct = await global.Product.find({
+        category: productCategory
+      }).populate("productDetail");
+
+      let relevantProduct = [];
+
+      for (let i = 0; i < 4; i++) {
+        let index = 0;
+        do {
+          index = Math.floor(Math.random() * AllRelevantProduct.length);
+        } while (AllRelevantProduct[index]._id == id);
+        relevantProduct.push(AllRelevantProduct[index]);
+        AllRelevantProduct.splice(index, 1);
+      }
+
+      return res.json({
+        productDetail: productDetail,
+        relevantProduct: relevantProduct
+      });
     } else {
-      return res.send("none");
+      productDetail = await global.Product.find({ _id: id });
+
+      //find other products under same category
+      let productCategory = productDetail[0].category;
+
+      let AllRelevantProduct = await global.Product.find({
+        category: productCategory
+      });
+
+      let relevantProduct = [];
+
+      for (let i = 0; i < 4; i++) {
+        let index = 0;
+        do {
+          index = Math.floor(Math.random() * AllRelevantProduct.length);
+        } while (AllRelevantProduct[index]._id == id);
+        relevantProduct.push(AllRelevantProduct[index]);
+        AllRelevantProduct.splice(index, 1);
+      }
+
+      return res.json({
+        productDetail: productDetail,
+        relevantProduct: relevantProduct
+      });
+      // res.send("none");
     }
-  })(req, res, next);
+  })(req, res);
 });
+
+router.get("/test/:id", function(req, res, next) {});
 
 //for get products by vendorId
 router.get("/vendor/:vendorId", async (req, res) => {
