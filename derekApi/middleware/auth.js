@@ -25,7 +25,7 @@ function signTokenHandler(req, res) {
 }
 
 // Logging in with username/password
-passport.use(User.createStrategy());
+passport.use(global.User.createStrategy());
 
 // JWT
 passport.use(

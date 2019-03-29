@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 
 const router = express.Router();
 
@@ -47,53 +48,19 @@ router.get("/:id", async (req, res) => {
     relevantProduct: relevantProduct
   });
 });
-// router.get("/test/:id", async (req, res) => {
-//   console.log("smthing running");
-//   var id = req.params.id;
 
-//   passport.authenticate("local", function(err, user, info) {
-//     if (err) {
-//       return next(err);
-//     }
-//     if (!user) {
-//       return res.redirect("/login");
-//     }
-//     req.logIn(user, function(err) {
-//       if (err) {
-//         return next(err);
-//       }
-//       return res.redirect("/users/" + user.username);
-//     });
-//   })(req, res, next);
-
-//   let productDetail = await global.Product.find({ _id: id }).populate(
-//     "productDetail"
-//   );
-
-//   //find other products under same category
-//   let productCategory = productDetail[0].category;
-//   console.log(`category id ` + productCategory);
-
-//   let AllRelevantProduct = await global.Product.find({
-//     category: productCategory
-//   }).populate("productDetail");
-
-//   let relevantProduct = [];
-
-//   for (let i = 0; i < 4; i++) {
-//     let index = 0;
-//     do {
-//       index = Math.floor(Math.random() * AllRelevantProduct.length);
-//     } while (AllRelevantProduct[index]._id == id);
-//     relevantProduct.push(AllRelevantProduct[index]);
-//     AllRelevantProduct.splice(index, 1);
-//   }
-
-//   res.json({
-//     productDetail: productDetail,
-//     relevantProduct: relevantProduct
-//   });
-// });
+router.get("/test/:id", function(req, res, next) {
+  passport.authenticate("jwt", function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (user) {
+      return res.send("user");
+    } else {
+      return res.send("none");
+    }
+  })(req, res, next);
+});
 
 //for get products by vendorId
 router.get("/vendor/:vendorId", async (req, res) => {

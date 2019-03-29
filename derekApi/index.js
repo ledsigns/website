@@ -2,9 +2,11 @@ const sls = require("serverless-http");
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+require("./db/dbInit");
+const authMiddleware = require("./middleware/auth");
 
 //Init DB
-require("./db/dbInit");
 
 // Create server
 const server = express();
@@ -20,6 +22,7 @@ server.use(function(req, res, next) {
   );
   next();
 });
+server.use(cors());
 
 //Routes
 const testRouter = require("./routes/test");
