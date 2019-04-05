@@ -13,6 +13,9 @@ export default class ProductPage extends Component {
     productDetail: null,
     relevantProduct: null
   };
+  constructor(props) {
+    super(props);
+  }
   async componentDidMount() {
     let newProductDetail = await getProduct(this.props.match.params.id);
     this.setState({
@@ -20,8 +23,7 @@ export default class ProductPage extends Component {
       relevantProduct: newProductDetail.relevantProduct
     });
     console.log("updated State");
-    console.log(this.state.productDetail);
-    console.log(this.state.relevantProduct);
+    console.log(this.props.poggedIn);
   }
   render() {
     return (
@@ -66,14 +68,53 @@ export default class ProductPage extends Component {
                       items={[
                         {
                           title: "Product Detail",
-                          inside: <p>{this.state.productDetail.description}</p>
+                          inside: (
+                            <div>
+                              {this.props.loggedIn ? (
+                                <div>
+                                  <p>{this.state.productDetail.description}</p>
+                                </div>
+                              ) : (
+                                <div
+                                  style={{
+                                    width: "100%",
+                                    position: "relative"
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      color: "transparent",
+                                      textShadow: "0px 0px 10px #000"
+                                    }}
+                                  >
+                                    <p>
+                                      {this.state.productDetail.description}
+                                    </p>
+                                  </div>
+                                  <div
+                                    style={{
+                                      zIndex: "2",
+                                      position: "absolute",
+                                      top: "10px",
+                                      left: "0",
+                                      width: "100%"
+                                    }}
+                                  >
+                                    Please login
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )
                         },
                         {
                           title: "Parameters",
                           inside: (
-                            <p>
-                              {this.state.productDetail.productDetail.specs}
-                            </p>
+                            <div>
+                              <p style={{}}>
+                                {this.state.productDetail.productDetail.specs}
+                              </p>
+                            </div>
                           )
                         },
                         {
@@ -93,7 +134,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link1
-                                    })`,
+                                  })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -106,7 +147,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link2
-                                    })`,
+                                  })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -119,7 +160,7 @@ export default class ProductPage extends Component {
                                   backgroundImage: `url(${
                                     this.state.productDetail.productDetail
                                       .showCase[0].link3
-                                    })`,
+                                  })`,
                                   backgroundRepeat: "no-repeat",
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
@@ -133,8 +174,8 @@ export default class ProductPage extends Component {
                   </div>
                 </div>
               ) : (
-                  <CircularProgress />
-                )}
+                <CircularProgress />
+              )}
             </div>
             <div style={{ marginBottom: "50px" }}>
               {console.log(

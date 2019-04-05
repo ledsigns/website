@@ -10,6 +10,7 @@ import HoverButton from "./components/molecules/Hover";
 import BottomSection from "./components/organisms/BottomSection";
 import ProductByVendorPage from "./components/pages/ProductByVendor";
 import ProductByCategoryPage from "./components/pages/ProductByCategory";
+import LoginPage from "./components/pages/Login";
 import { getNavBarData } from "./api/navBar";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -21,7 +22,8 @@ import { CircularProgress } from "@material-ui/core";
 class App extends Component {
   state = {
     productData: null,
-    categoryData: null
+    categoryData: null,
+    token: null
   };
   async componentDidMount() {
     let newData = await getNavBarData();
@@ -62,7 +64,12 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/category/:id" component={VendorsPage} />
             <Route exact path="/test" component={TestPage} />
-            <Route exact path="/product/:id" component={ProductDetailPage} />
+            <Route
+              exact
+              path="/product/:id"
+              loggedIn={!this.state.token}
+              component={ProductDetailPage}
+            />
             <Route exact path="/vendor/:id" component={ProductByVendorPage} />
             <Route
               exact
@@ -73,6 +80,17 @@ class App extends Component {
               exact
               path="/productByCategory/:categoryId"
               component={ProductByCategoryPage}
+            />
+            <Route
+              path="/login"
+              render={() => (
+                <LoginPage
+                // handleErrors={this.handleError}
+                // setToken={this.setToken}
+                // onSignIn={this.handleSignIn}
+                // onRegister={this.handleRegister}
+                />
+              )}
             />
           </Switch>
         </Router>

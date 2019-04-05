@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
       productDetail = await global.Product.find({ _id: id }).populate(
         "productDetail"
       );
-
+      a;
       //find other products under same category
       let productCategory = productDetail[0].category;
 
