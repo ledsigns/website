@@ -5,13 +5,13 @@ import TestPage from "./components/pages/Test";
 import HomePage from "./components/pages/Home";
 import VendorsPage from "./components/pages/Vendors";
 import ProductsPage from "./components/pages/Products";
+import VerifyPage from "./components/pages/Verify";
 import ProductDetailPage from "./components/pages/ProductDetail";
 import HoverButton from "./components/molecules/Hover";
 import BottomSection from "./components/organisms/BottomSection";
 import ProductByVendorPage from "./components/pages/ProductByVendor";
 import ProductByCategoryPage from "./components/pages/ProductByCategory";
 import LoginPage from "./components/pages/Login";
-import { setApiToken } from "./api/init";
 import * as authAPI from "./api/auth";
 import { getNavBarData } from "./api/navBar";
 import { TokenProvider } from "./context/token";
@@ -19,7 +19,6 @@ import { TokenProvider } from "./context/token";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./main.scss";
 
-const tokenKey = "userToken";
 // import { BrowserRouter as Router, Route, Switch } from "react-router";
 
 class App extends Component {
@@ -54,32 +53,6 @@ class App extends Component {
     });
   }
 
-  handleRegister = ({ email, password, firstName, lastName }) => {
-    authAPI
-      .register({ email, password, firstName, lastName })
-      .then(json => {
-        this.setToken(json.token);
-      })
-      .catch(error => {
-        console.log(error);
-        this.handleError(error);
-      });
-  };
-
-  handleSignOut = () => {
-    this.setToken(null);
-  };
-
-  // setToken(null) === signOut()
-  setToken = token => {
-    if (token) {
-      localStorage.setItem(tokenKey, token);
-    } else {
-      localStorage.removeItem(tokenKey);
-    }
-    setApiToken(token);
-    this.setState({ token: token });
-  };
   render() {
     console.log("categoryData");
     console.log(this.state.categoryData);
@@ -113,16 +86,10 @@ class App extends Component {
                 path="/productByCategory/:categoryId"
                 component={ProductByCategoryPage}
               />
+              <Route exact path="/verify" component={VerifyPage} />
               <Route
                 path="/login"
-                render={() => (
-                  <LoginPage
-                    handleErrors={this.handleError}
-                    setToken={this.setToken}
-                    onSignIn={this.handleSignIn}
-                    onRegister={this.handleRegister}
-                  />
-                )}
+                render={() => <LoginPage handleErrors={this.handleError} />}
               />
             </Switch>
           </Router>

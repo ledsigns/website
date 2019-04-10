@@ -17,7 +17,8 @@ api.interceptors.response.use(undefined, err => {
       error.config &&
       !error.config.__isRetryRequest
     ) {
-      return this.props.history.push("/signOut");
+      localStorage.removeItem("token");
+      return this.props.history.push("/");
     }
   }
 });

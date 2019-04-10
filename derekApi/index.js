@@ -31,6 +31,7 @@ const vendorRouter = require("./routes/vendor");
 const categoryRouter = require("./routes/category");
 const homePage = require("./routes/homePage");
 const navBar = require("./routes/navBar");
+const verifyRouter = require("./routes/verify");
 const authRouter = require("./routes/auth");
 
 //server side routers
@@ -39,6 +40,7 @@ server.use("/product", productRouter);
 server.use("/vendor", vendorRouter);
 server.use("/category", categoryRouter);
 server.use("/homePage", homePage);
+server.use("/verify", verifyRouter);
 server.use("/navBar", navBar);
 server.use("/auth", authRouter);
 server.get("/test", (req, res) => {

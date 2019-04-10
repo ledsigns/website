@@ -66,7 +66,7 @@ export default class ProductPage extends Component {
                           title: "Product Detail",
                           inside: (
                             <div>
-                              {this.props.loggedIn ? (
+                              {true ? (
                                 <div>
                                   <p>{this.state.productDetail.description}</p>
                                 </div>
@@ -123,7 +123,7 @@ export default class ProductPage extends Component {
                                 minWidth: "250%"
                               }}
                             >
-                              <div
+                              {/* <div
                                 style={{
                                   height: "500px",
                                   width: "500px",
@@ -161,7 +161,7 @@ export default class ProductPage extends Component {
                                   backgroundPosition: "center center",
                                   backgroundSize: "contain"
                                 }}
-                              />
+                              /> */}
                             </div>
                           )
                         }

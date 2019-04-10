@@ -9,6 +9,8 @@ const jwtAlgorithm = "HS256";
 
 function signTokenHandler(req, res) {
   const user = req.user;
+  console.log("req.user");
+
   const token = jwt.sign(
     {
       // The payload: any additional information we want signed
@@ -21,6 +23,7 @@ function signTokenHandler(req, res) {
       expiresIn: "10h" // Expires in 10 hours
     }
   );
+
   res.json({ token });
 }
 

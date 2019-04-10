@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import RaisedButton from "material-ui/RaisedButton";
+
 import TextField from "../atoms/TextField";
 import "../styles/pages/Login.scss";
 import { TokenContext } from "../../context/token";
@@ -11,6 +14,7 @@ export default class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      token: null,
       createAccount: true,
       email: "",
       password: "",
@@ -19,25 +23,6 @@ export default class LoginPage extends Component {
       loading: false
     };
   }
-
-  submitToAuth = (callback, changeContext) => {
-    // Get values from the field
-    const email = this.state.email;
-    const password = this.state.password;
-    const firstName = this.state.firstName;
-    const lastName = this.state.lastName;
-    // Call the callback function with our values
-
-    callback(
-      {
-        email,
-        password,
-        firstName,
-        lastName
-      },
-      changeContext
-    );
-  };
 
   //handle user input and set password and email state
   onInputChange = (e, newValue) => {
@@ -56,9 +41,10 @@ export default class LoginPage extends Component {
     // oauthApi.start(this.changeLoading, this.props.setToken,this.props.handleErrors)
   }
 
-  onSignIn = (form, changeToken) => {
-    let email = form.email;
-    let password = form.email;
+  onSignIn = changeToken => {
+    const email = this.state.email;
+    const password = this.state.password;
+
     console.log(changeToken);
     // context.changeToken("123456");
     authAPI
@@ -68,6 +54,7 @@ export default class LoginPage extends Component {
 
         // console.log("json");
         // console.log(json);
+        localStorage.setItem("token", json.token);
         changeToken(json.token);
       })
       .catch(error => {
@@ -75,24 +62,42 @@ export default class LoginPage extends Component {
       });
   };
 
-  OnRegister = ({ email, password, firstName, lastName }, changeToken) => {
-    authAPI
-      .register({
-        email,
-        password,
-        firstName,
-        lastName
-      })
-      .then(json => {
-        changeToken(json.token);
-        // this.setToken(json.token);
-      })
-      .catch(error => {
-        // console.log(error);
-        // this.handleError(error);
-      });
-  };
+  async onRegister() {
+    let res = await authAPI.send();
+    this.setState({ token: res.data.id });
+    // authAPI
+    //   .register({
+    //     email,
+    //     password,
+    //     firstName,
+    //     lastName
+    //   })
+    //   .then(json => {
+    //     changeToken(json.token);
+    //     // this.setToken(json.token);
+    //   })
+    //   .catch(error => {
+    //     // console.log(error);
+    //     // this.handleError(error);
+    //   });
+  }
   render() {
+    if (this.state.token) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/verify",
+            state: {
+              token: this.state.token,
+              email: this.state.email,
+              password: this.state.password,
+              firstName: this.state.firstName,
+              lastName: this.state.lastName
+            }
+          }}
+        />
+      );
+    }
     return (
       <div className="login-background">
         <TokenContext.Consumer>
@@ -112,10 +117,7 @@ export default class LoginPage extends Component {
                             fullWidth={true}
                             onChange={this.onInputChange}
                             onEnterKeyDown={() =>
-                              this.submitToAuth(
-                                this.onSignIn,
-                                context.changeToken
-                              )
+                              this.onSignIn(context.changeToken)
                             }
                             value={this.state.email}
                             hintText="Email"
@@ -126,10 +128,7 @@ export default class LoginPage extends Component {
                             fullWidth={true}
                             onChange={this.onInputChange}
                             onEnterKeyDown={() =>
-                              this.submitToAuth(
-                                this.onSignIn,
-                                context.changeToken
-                              )
+                              this.onSignIn(context.changeToken)
                             }
                             value={this.state.password}
                             hintText="Password"
@@ -141,12 +140,7 @@ export default class LoginPage extends Component {
                             <RaisedButton
                               className="login-button"
                               label="Log in"
-                              onClick={() =>
-                                this.submitToAuth(
-                                  this.onSignIn,
-                                  context.changeToken
-                                )
-                              }
+                              onClick={() => this.onSignIn(context.changeToken)}
                             />
                             <br />
                             <RaisedButton
@@ -173,12 +167,7 @@ export default class LoginPage extends Component {
                             floatingLabelText="Email"
                             fullWidth={true}
                             onChange={this.onInputChange}
-                            onEnterKeyDown={() =>
-                              this.submitToAuth(
-                                this.onRegister,
-                                context.changeToken
-                              )
-                            }
+                            onEnterKeyDown={() => this.onRegister()}
                             value={this.state.email}
                             hintText="Email"
                           />
@@ -187,24 +176,28 @@ export default class LoginPage extends Component {
                             floatingLabelText="Password"
                             fullWidth={true}
                             onChange={this.onInputChange}
-                            onEnterKeyDown={() =>
-                              this.submitToAuth(this.onRegister)
-                            }
+                            onEnterKeyDown={() => this.onRegister()}
                             value={this.state.password}
                             hintText="Password"
                             type="password"
+                          />
+                          <TextField
+                            id="telephone"
+                            floatingLabelText="Mobile Number"
+                            fullWidth={true}
+                            required
+                            onChange={this.onInputChange}
+                            onEnterKeyDown={() => this.onRegister()}
+                            value={this.state.password}
+                            hintText="Mobile Number"
+                            type="number"
                           />
                           <TextField
                             id="firstName"
                             floatingLabelText="First Name"
                             fullWidth={true}
                             onChange={this.onInputChange}
-                            onEnterKeyDown={() =>
-                              this.submitToAuth(
-                                this.onRegister,
-                                context.changeToken
-                              )
-                            }
+                            onEnterKeyDown={() => this.onRegister()}
                             value={this.state.firstName}
                             hintText="First Name"
                           />
@@ -213,12 +206,7 @@ export default class LoginPage extends Component {
                             floatingLabelText="Last Name"
                             fullWidth={true}
                             onChange={this.onInputChange}
-                            onEnterKeyDown={() =>
-                              this.submitToAuth(
-                                this.onRegister,
-                                context.changeToken
-                              )
-                            }
+                            onEnterKeyDown={() => this.onRegister()}
                             value={this.state.lastName}
                             hintText="Last Name"
                           />
@@ -227,17 +215,12 @@ export default class LoginPage extends Component {
                           <RaisedButton
                             className="login-button"
                             label="Register"
-                            onClick={() =>
-                              this.submitToAuth(
-                                this.onRegister,
-                                context.changeToken
-                              )
-                            }
+                            onClick={() => this.onRegister()}
                           />
 
                           <RaisedButton
                             className="create-account-button"
-                            label="Log in"
+                            label="Change To Log in"
                             onClick={this.handleAccountChange}
                           />
                         </div>
@@ -246,6 +229,7 @@ export default class LoginPage extends Component {
                   </div>
                 )}
               </div>
+              <h1>{context.state.token}</h1>
             </MuiThemeProvider>
           )}
         </TokenContext.Consumer>

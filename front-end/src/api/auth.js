@@ -15,23 +15,51 @@ export function signIn({ email, password }) {
       throw Error(error.response.data.error);
     });
 }
-
-export function register({ email, password, firstName, lastName }) {
+export function send() {
   return api
-    .post(`/auth/register`, {
-      email: email,
-      password: password,
-      firstName: firstName,
-      lastName: lastName
-    })
+    .post(`/verify/send`, {})
     .then(res => {
-      console.log("res");
-      console.log(res);
       return res;
     })
     .catch(error => {
-      throw Error(error.message);
+      throw Error(error.response.data.error);
     });
+}
+export function confirm(code, state) {
+  return api
+    .post(`/verify/confirm`, { id: code, state: state })
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      throw Error(error.response.data.error);
+    });
+}
+
+export function register() {
+  return api
+    .post(`/verify/send`, {})
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      throw Error(error.response.data.error);
+    });
+  // return api
+  //   .post(`/auth/register`, {
+  //     email: email,
+  //     password: password,
+  //     firstName: firstName,
+  //     lastName: lastName
+  //   })
+  //   .then(res => {
+  //     console.log("res");
+  //     console.log(res);
+  //     return res;
+  //   })
+  //   .catch(error => {
+  //     throw Error(error.message);
+  //   });
 }
 // export function register({ email, password }) {
 //     return api.post('/auth/register', {
