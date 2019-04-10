@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Phone from "@material-ui/icons/Phone";
 import Email from "@material-ui/icons/Email";
-import Location_on from "@material-ui/icons/LocationOn";
+import location_on from "@material-ui/icons/LocationOn";
 import "../styles/molecules/Hover.scss";
 
 function arrowGenerator(color) {
@@ -110,7 +110,6 @@ class Hover extends Component {
 
         <Tooltip
           interactive
-          title="Add"
           placement="left"
           classes={{
             popper: classes.htmlPopper,
@@ -141,7 +140,7 @@ class Hover extends Component {
                 <br />
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <Location_on />
+                <location_on />
                 <p>
                   Premier @ 8 Kaki Bukit Ave 4 #03-22, Singapore 415875
                 </p>{" "}

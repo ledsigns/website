@@ -1,27 +1,11 @@
 import React, { Component } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import "../styles/molecules/HomeCarousel.scss";
 import GalleryItem from "../atoms/GalleryItem";
 
-
-
 export default class MultipleItems extends Component {
-
   render() {
-    {
-      console.log(`passed props is`)
-      console.log(this.props.items)
-    }
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 3
-    };
     return (
-
       <div style={{ backgroundColor: "white" }}>
         {this.props.items ? (
           <div>
@@ -43,8 +27,8 @@ export default class MultipleItems extends Component {
                 }}
               >
                 {this.props.items.map(element => {
-                  console.log(`element is`)
-                  console.log(element)
+                  console.log(`element is`);
+                  console.log(element);
                   return GalleryItem(
                     element.productDetail.images[0].link,
                     element.name,
@@ -57,16 +41,15 @@ export default class MultipleItems extends Component {
             </section>
           </div>
         ) : (
-            false
-          )}
+          false
+        )}
       </div>
     );
   }
 }
-{
-  GalleryItem(
-    "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
-    "Hai",
-    "/"
-  );
-}
+
+GalleryItem(
+  "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=beautiful-beauty-blue-414612.jpg&fm=jpg",
+  "Hai",
+  "/"
+);

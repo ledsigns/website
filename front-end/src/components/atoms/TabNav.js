@@ -1,17 +1,5 @@
 import React from "react";
-import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
-  Card,
-  Button,
-  CardTitle,
-  CardText,
-  Row,
-  Col
-} from "reactstrap";
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row } from "reactstrap";
 import "../styles/bootstrap-3.3.7-dist/css/bootstrap.min.css";
 import classnames from "classnames";
 

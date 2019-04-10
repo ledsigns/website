@@ -5,7 +5,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import { getProduct } from "../../api/product";
 import RelevantCarousel from "../molecules/RelevantCarousel";
-import ExpandCollapse from "react-expand-collapse";
 import "../styles/pages/ProductDetail.scss";
 
 export default class ProductPage extends Component {
@@ -13,9 +12,6 @@ export default class ProductPage extends Component {
     productDetail: null,
     relevantProduct: null
   };
-  constructor(props) {
-    super(props);
-  }
   async componentDidMount() {
     let newProductDetail = await getProduct(this.props.match.params.id);
     this.setState({

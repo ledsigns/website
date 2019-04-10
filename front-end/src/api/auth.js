@@ -1,34 +1,37 @@
-import api from './init'
+import api from "./init";
 
-let handleErrors
-export function init(handleError, signOut) {
-  handleErrors = handleError
-}
+export function init(handleError, signOut) {}
 
 export function signIn({ email, password }) {
-  return api.post(`/auth`, {
-    "email": email,
-    "password": password
-  })
+  return api
+    .post(`/auth`, {
+      email: email,
+      password: password
+    })
     .then(res => {
-      return res.data
+      return res.data;
     })
     .catch(error => {
-      throw Error(error.response.data.error)
-    })
+      throw Error(error.response.data.error);
+    });
 }
 
 export function register({ email, password, firstName, lastName }) {
-  return api.post(`/auth/register`, {
-    "email": email,
-    "password": password,
-    "firstName": firstName,
-    "lastName": lastName
-  })
-    .then(res => res.data)
-    .catch(error => {
-      throw Error(error.message)
+  return api
+    .post(`/auth/register`, {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
     })
+    .then(res => {
+      console.log("res");
+      console.log(res);
+      return res;
+    })
+    .catch(error => {
+      throw Error(error.message);
+    });
 }
 // export function register({ email, password }) {
 //     return api.post('/auth/register', {

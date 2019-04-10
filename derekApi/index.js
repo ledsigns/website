@@ -41,6 +41,9 @@ server.use("/category", categoryRouter);
 server.use("/homePage", homePage);
 server.use("/navBar", navBar);
 server.use("/auth", authRouter);
+server.get("/test", (req, res) => {
+  res.send("works");
+});
 
 // Handle errors by returning JSON
 server.use((error, req, res, next) => {

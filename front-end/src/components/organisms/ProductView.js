@@ -2,14 +2,6 @@ import React, { Component } from "react";
 import ReactImageMagnify from "react-image-magnify";
 import ReactSlick from "react-slick";
 
-const elements = [
-  {
-    img:
-      "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    src:
-      "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-  }
-];
 export default class Product extends Component {
   render() {
     console.log("this.props.productDetail");

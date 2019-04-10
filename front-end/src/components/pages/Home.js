@@ -7,24 +7,19 @@ import SearchBar from "material-ui-search-bar";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Paper from "@material-ui/core/Paper";
 import Dropdown from "../molecules/Dropdown";
-import ClientSlider from "../atoms/clientSlider";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Fade from "@material-ui/core/Fade";
 
 const elements = [
   {
-    img:
-      "http://www.unilumin.com/upload/Banner/userfaceIII.jpg",
+    img: "http://www.unilumin.com/upload/Banner/userfaceIII.jpg",
     caption: "Hai"
   },
   {
-    img:
-      "http://www.unilumin.com/upload/Banner/UTV3banner.jpg",
+    img: "http://www.unilumin.com/upload/Banner/UTV3banner.jpg",
     caption: "Hai"
   },
   {
-    img:
-      "http://www.unilumin.com/upload/2019011817390706.jpg",
+    img: "http://www.unilumin.com/upload/2019011817390706.jpg",
     caption: "Hai"
   }
 ];
@@ -71,6 +66,8 @@ function sortData(selectedIndex, data, searchText) {
           });
         }
       }
+      break;
+    default:
       break;
   }
   return toReturn;
@@ -276,8 +273,8 @@ export default class HomePage extends Component {
             </div>
           </Fade>
         ) : (
-            false
-          )}
+          false
+        )}
         <div
           style={{
             width: "100%",
