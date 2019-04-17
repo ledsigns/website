@@ -66,7 +66,7 @@ export default class ProductPage extends Component {
                           title: "Product Detail",
                           inside: (
                             <div>
-                              {true ? (
+                              {this.state.loggedIn ? (
                                 <div>
                                   <p>{this.state.productDetail.description}</p>
                                 </div>

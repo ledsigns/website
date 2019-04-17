@@ -27,7 +27,8 @@
     "react-transition-group": "^2.5.3",
     "reactstrap": "^7.1.0",
     "slick-carousel": "^1.8.1",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.3.3333",
+    "victory": "^32.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

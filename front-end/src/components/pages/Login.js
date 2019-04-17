@@ -20,6 +20,7 @@ export default class LoginPage extends Component {
       password: "",
       firstName: "",
       lastName: "",
+      number: "",
       loading: false
     };
   }
@@ -182,13 +183,13 @@ export default class LoginPage extends Component {
                             type="password"
                           />
                           <TextField
-                            id="telephone"
+                            id="number"
                             floatingLabelText="Mobile Number"
                             fullWidth={true}
                             required
                             onChange={this.onInputChange}
                             onEnterKeyDown={() => this.onRegister()}
-                            value={this.state.password}
+                            value={this.state.number}
                             hintText="Mobile Number"
                             type="number"
                           />

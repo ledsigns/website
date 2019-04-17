@@ -27,8 +27,6 @@ export default props => {
           <div>
             <p>We Have sent your token</p>
             <p>Please input here</p>
-            <h1>{props.location.state.token}</h1>
-            <h1>{props.location.state.firstName}</h1>
             <MuiThemeProvider>
               <TextField
                 value={token}
