@@ -1,11 +1,11 @@
 import axios from "axios";
 
-// const api = axios.create({
-//   baseURL: "https://16dgqbln9e.execute-api.ap-southeast-1.amazonaws.com/dev/" //process.env.REACT_APP_API_URL
-// });
 const api = axios.create({
-  baseURL: "http://localhost:8085/" //process.env.REACT_APP_API_URL
+  baseURL: "https://16dgqbln9e.execute-api.ap-southeast-1.amazonaws.com/dev/" //process.env.REACT_APP_API_URL
 });
+// const api = axios.create({
+//   baseURL: "http://localhost:8085/" //process.env.REACT_APP_API_URL
+// });
 
 // Add a 401 response interceptor
 api.interceptors.response.use(undefined, err => {

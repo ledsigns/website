@@ -54,8 +54,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("categoryData");
-    console.log(this.state.categoryData);
     return (
       <TokenProvider>
         <div className="main" style={{ position: "relative" }}>
