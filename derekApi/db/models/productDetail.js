@@ -1,36 +1,7 @@
 const mongoose = require("./init").mongoose;
 
-// ProductDetail = ({
-//      productId: [
-// {
-//     userID: [
-//         //For registered user
-//         {id: '799677146374973'},
-//         {id: '098y4706'},
-//         // For anonymous
-//         {id: null},
-//         {id: null},
-//         {id: null},
-//         {id: null},
-//     ]
-// }
-//   ]
-// });
-
-// ProductDetail = ({
-//     images: [
-//         {
-//             link: String,
-//             description: String
-//         }
-//     ],
-//     productIntro: String,
-//     ...,
-//     clicks: ClickSchema,
-// });
-
 const ClickSchema = mongoose.Schema({
-  productId: [
+  userId: [
     {
       User: {
         type: mongoose.Schema.Types.ObjectId,
@@ -60,7 +31,7 @@ const ProductDetailSchema = mongoose.Schema({
       description: String
     }
   ],
-  clicks: ClickSchema
+  clicks: [ClickSchema]
 });
 
 const ProductDetail = mongoose.model("ProductDetail", ProductDetailSchema);

@@ -13,6 +13,11 @@ export class TokenProvider extends Component {
     this.setState({ token: value });
   }
 
+  signOut(value) {
+    let token = localStorage.removeItem("token");
+    this.setState({ token: null });
+  }
+
   componentDidMount() {
     let token = localStorage.getItem("token");
     this.setState({ token: token });
@@ -25,7 +30,8 @@ export class TokenProvider extends Component {
           state: this.state,
           changeToken: newValue => {
             this.changeToken(newValue);
-          }
+          },
+          signOut: this.signOut
         }}
       >
         {this.props.children}

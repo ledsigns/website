@@ -18,6 +18,7 @@ import {
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
+    this.onSignIn = this.onSignIn.bind(this);
     this.state = {
       token: null,
       createAccount: true,
@@ -47,12 +48,12 @@ export default class LoginPage extends Component {
     // oauthApi.start(this.changeLoading, this.props.setToken,this.props.handleErrors)
   }
 
-  onSignIn = changeToken => {
+  onSignIn = async context => {
     const email = this.state.email;
     const password = this.state.password;
 
-    console.log(changeToken);
-    // context.changeToken("123456");
+    console.log(context);
+    // context.context("123456");
     authAPI
       .signIn({ email, password })
       .then(json => {
@@ -61,32 +62,34 @@ export default class LoginPage extends Component {
         // console.log("json");
         // console.log(json);
         localStorage.setItem("token", json.token);
-        changeToken(json.token);
+        context.changeToken(json.token);
       })
       .catch(error => {
         // this.handleError(error.message);
       });
   };
 
-  async onRegister() {
+  onSignRegister = async context => {
     let res = await authAPI.send();
     this.setState({ token: res.data.id });
-    // authAPI
-    //   .register({
-    //     email,
-    //     password,
-    //     firstName,
-    //     lastName
-    //   })
-    //   .then(json => {
-    //     changeToken(json.token);
-    //     // this.setToken(json.token);
-    //   })
-    //   .catch(error => {
-    //     // console.log(error);
-    //     // this.handleError(error);
-    //   });
-  }
+    const { email, password, firstName, lastName } = this.state;
+    authAPI
+      .register({
+        email,
+        password,
+        firstName,
+        lastName
+      })
+      .then(json => {
+        context.changeToken(json.token);
+        localStorage.setItem("token", json.token);
+        // this.setToken(json.token);
+      })
+      .catch(error => {
+        // console.log(error);
+        // this.handleError(error);
+      });
+  };
   render() {
     if (this.state.token) {
       return (
@@ -157,7 +160,7 @@ export default class LoginPage extends Component {
                                 <MDBBtn
                                   className="login-button"
                                   label="Register"
-                                  onClick={() => this.onRegister()}
+                                  onClick={() => this.onSignIn(context)}
                                   color="cyan"
                                   type="submit"
                                 >
@@ -288,7 +291,7 @@ export default class LoginPage extends Component {
                                 <MDBBtn
                                   className="login-button"
                                   label="Register"
-                                  onClick={() => this.onRegister()}
+                                  onClick={() => this.onSignRegister(context)}
                                   color="cyan"
                                   type="submit"
                                 >

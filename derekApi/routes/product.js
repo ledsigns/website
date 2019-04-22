@@ -24,10 +24,25 @@ router.get("/:id", async (req, res) => {
     //   return next(err);
     // }
     if (user) {
+      const daOne = await global.Product.findById(`${id}`);
+      if (daOne.clicks) {
+        daOne.clicks.push({ id: user._id });
+      } else {
+        daOne.clicks = [{ id: user._id }];
+      }
+      daOne.save();
       productDetail = await global.Product.find({ _id: id }).populate(
         "productDetail"
       );
-      a;
+      console.log("going");
+      console.log("here");
+      if (productDetail.clicks) {
+        productDetail.clicks.push({ id: user._id });
+      } else {
+        productDetail.clicks = [{ id: user._id }];
+      }
+      productDetail.save();
+      console.log("Goin through");
       //find other products under same category
       let productCategory = productDetail[0].category;
 
@@ -45,14 +60,23 @@ router.get("/:id", async (req, res) => {
         relevantProduct.push(AllRelevantProduct[index]);
         AllRelevantProduct.splice(index, 1);
       }
-
       return res.json({
         productDetail: productDetail,
         relevantProduct: relevantProduct
       });
     } else {
+      console.log("away");
+      console.log("going");
       productDetail = await global.Product.find({ _id: id });
 
+      const daOne = await global.Product.findById(`${id}`);
+      if (daOne.clicks) {
+        daOne.clicks.push({ id: null });
+      } else {
+        daOne.clicks = [{ id: null }];
+      }
+      daOne.save();
+      console.log("going");
       //find other products under same category
       let productCategory = productDetail[0].category;
 

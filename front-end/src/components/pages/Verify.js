@@ -11,7 +11,6 @@ export default props => {
   const [redirect, setRedirect] = useState(false);
   const send = async context => {
     let res = await authAPI.confirm(token, props.location.state);
-    // context.changeToken("res");
 
     context.changeToken(res.data.token);
     localStorage.setItem("token", res.data.token);

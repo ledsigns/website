@@ -9,6 +9,14 @@ router
     });
     res.json(newOne);
   })
+  .get("/test:id", async (req, res) => {
+    var id = req.params.id;
+    productDetail = await global.Product.find({ _id: id }).populate(
+      "productDetail"
+    );
+    console.log(productDetail);
+    res.json(newOne);
+  })
 
   .get("/fs", async (req, res) => {
     let dir = "sampleData/category";
@@ -37,13 +45,15 @@ router
         name: `lvl2 Category ${i + 1}`,
         description: `all the category ${i + 1} stuff here`,
         categoryLogo: {
-          link: `https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/category/${categoryImages[i]}`,
+          link: `https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/category/${
+            categoryImages[i]
+          }`,
           description: `category${i + 1}Logo`
         },
         favorability: i
       });
-      console.log(`category : ` + category)
-      categoryArray.push(category.categoryLogo[0].link)
+      console.log(`category : ` + category);
+      categoryArray.push(category.categoryLogo[0].link);
     }
 
     //add dummy vendors
@@ -52,21 +62,23 @@ router
     let vendorImages = fs.readdirSync(vendorDirBuf);
     console.log(vendorImages);
 
-    let vendorArray = []
+    let vendorArray = [];
     for (var i = 0; i < 9; i++) {
       let vendor = await global.Vendor.create({
         name: `vendor${i + 1}`,
         websiteURL: `www.vendor${i + 1}.com`,
         vendorLogo: [
           {
-            link: `https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/vendor/${vendorImages[i]}`,
+            link: `https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/vendor/${
+              vendorImages[i]
+            }`,
             description: `smthing about vendor${i + 1}`
           }
         ],
         favorability: i + 1
       });
-      console.log(`vendor : ` + vendor)
-      vendorArray.push(vendor.vendorLogo[0].link)
+      console.log(`vendor : ` + vendor);
+      vendorArray.push(vendor.vendorLogo[0].link);
     }
 
     console.log("smthing running 1");
@@ -98,7 +110,12 @@ router
       let productDirBuf = Buffer.from(dirArray[i]);
       let productImages = fs.readdirSync(productDirBuf);
       for (var q = 0; q < productImages.length; q++) {
-        fileNameArray.push("https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/product/" + dirArray[i].slice(19, dirArray[i].length) + "/" + productImages[q]);
+        fileNameArray.push(
+          "https://s3-ap-southeast-1.amazonaws.com/ledsignstestimg/product/" +
+            dirArray[i].slice(19, dirArray[i].length) +
+            "/" +
+            productImages[q]
+        );
       }
     }
 
@@ -124,7 +141,7 @@ router
           }
         ]
       });
-      console.log(`productDetail i : ` + productDetail)
+      console.log(`productDetail i : ` + productDetail);
     }
     console.log("smthing running 3");
     // res.send("Task finished!");

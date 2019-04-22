@@ -14,7 +14,7 @@ import ProductByCategoryPage from "./components/pages/ProductByCategory";
 import LoginPage from "./components/pages/Login";
 import * as authAPI from "./api/auth";
 import { getNavBarData } from "./api/navBar";
-import { TokenProvider } from "./context/token";
+import { TokenProvider, TokenContext } from "./context/token";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./main.scss";
@@ -61,6 +61,15 @@ class App extends Component {
             categoryData={this.state.categoryData}
             productData={this.state.productData}
           />
+          <TokenContext.Consumer>
+            {context => (
+              <>
+                <br />
+
+                <h1>{context.state.token}</h1>
+              </>
+            )}
+          </TokenContext.Consumer>
           <HoverButton />
           <Router>
             <Switch>

@@ -9,6 +9,10 @@ import "../styles/molecules/AppBar.scss";
 import ItemsCarousel from "react-items-carousel";
 import Fade from "@material-ui/core/Fade";
 import NavProductSection from "../molecules/NavProductSection";
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Button from "@material-ui/core/Button";
+import { TokenConsumer } from "../../context/token";
 
 const styles = theme => ({
   root: {
@@ -24,7 +28,7 @@ class NavSection extends Component {
     productData: null
   };
 
-  async componentDidMount() { }
+  async componentDidMount() {}
 
   onnEnter = () => {
     this.setState({ show: true });
@@ -57,7 +61,7 @@ class NavSection extends Component {
                     display: "flex"
                   }}
                 >
-                  <div style={{ width: "25%" }}>
+                  <div style={{ width: "20%" }}>
                     <img
                       style={{ maxHeight: "100%", maxWidth: "100%" }}
                       src={logo}
@@ -68,13 +72,13 @@ class NavSection extends Component {
                     className
                     style={{
                       height: "100%",
-                      width: "80%",
+                      width: "70%",
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-around"
                     }}
                   >
-                    <a href="/" style={{ color: 'black' }}>
+                    <a href="/" style={{ color: "black" }}>
                       <div className="navbar-element">
                         <p>Home</p>
                       </div>
@@ -116,6 +120,29 @@ class NavSection extends Component {
                       <p>Contact Us</p>
                     </div>
                   </div>
+                  <div style={{ width: "10%" }}>
+                    <TokenConsumer>
+                      {context =>
+                        context ? (
+                          <a href="/login">
+                            <IconButton
+                              // aria-owns={open ? "menu-appbar" : undefined}
+                              aria-owns="menu-appbar"
+                              aria-haspopup="true"
+                              onClick={context.signOut}
+                              color="inherit"
+                            >
+                              <AccountCircle />
+                            </IconButton>
+                          </a>
+                        ) : (
+                          <a href="/login">
+                            <Button>Login</Button>
+                          </a>
+                        )
+                      }
+                    </TokenConsumer>
+                  </div>
                 </Toolbar>
               </div>
             </div>
@@ -124,9 +151,9 @@ class NavSection extends Component {
             <div>
               {show && this.props.categoryData && this.props.productData ? (
                 <>
-                  <ItemsCarousel numberOfCards={1} activeItemIndex={index} >
+                  <ItemsCarousel numberOfCards={1} activeItemIndex={index}>
                     <div style={{ backgroundColor: "white" }}>
-                      <div className="slider-element" >
+                      <div className="slider-element">
                         <div className="slider-nested">
                           <NavProductSection
                             categoryData={this.props.categoryData}
@@ -173,8 +200,8 @@ class NavSection extends Component {
                   </ItemsCarousel>
                 </>
               ) : (
-                  false
-                )}
+                false
+              )}
             </div>
           </Fade>
           {/*  */}

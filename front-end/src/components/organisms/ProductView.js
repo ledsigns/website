@@ -64,10 +64,6 @@ export default class Product extends Component {
                 </div>
               ))}
             </ReactSlick>
-            {/* details.productDetail.images.map(element => ({
-              img: element.link,
-            src: element.link
-          })) */}
           </div>
           <div style={{ marginLeft: "30px", width: "40%" }}>
             <h2>{details.name}</h2>
