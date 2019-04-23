@@ -1,19 +1,17 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { getBossData } from "./api/boss";
 import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
-import { SSL_OP_TLS_BLOCK_PADDING_BUG } from "constants";
 const converter = data => {
   let names = [];
   let newIndex = [];
 
   let alteredData = data.categoryArray.map((product, index) => {
-    if (index < 5) {
-      names.push(product.name);
-      newIndex.push(product.name);
-      return { clicks: product.clicks.length, index: index };
-    }
+    // if (index < 5) {
+    names.push(product.name);
+    newIndex.push(product.name);
+    return { clicks: product.clicks.length, index: index };
+    // }
   });
 
   return {
@@ -42,13 +40,9 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.data ? (
-          <div style={{ height: "100%", width: "20%", marginLeft: "100px" }}>
+          <div style={{ height: "100%", width: "80%", marginLeft: "100px" }}>
             <VictoryChart domainPadding={50}>
-              <VictoryBar
-                data={converted.data.slice(0, 5)}
-                x="clicks"
-                y="index"
-              />
+              <VictoryBar data={converted.data} x="clicks" y="index" />
             </VictoryChart>
           </div>
         ) : (

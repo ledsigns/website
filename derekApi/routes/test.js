@@ -9,6 +9,10 @@ router
     });
     res.json(newOne);
   })
+  .get("/createdat", async (req, res) => {
+    let newOne = await global.Product.findOne();
+    res.json(newOne.createdAt);
+  })
   .get("/test:id", async (req, res) => {
     var id = req.params.id;
     productDetail = await global.Product.find({ _id: id }).populate(
