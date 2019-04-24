@@ -1,30 +1,30 @@
 Arguments: 
-  /Users/marcos/.nvm/versions/node/v10.15.1/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add ReactImageMagnify
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add Fort Awesome
 
 PATH: 
-  /Users/marcos/.nvm/versions/node/v10.15.1/bin:/Users/marcos/.pyenv/shims:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/marcos/.nvm/versions/node/v10.15.1/bin:/Users/marcos/.pyenv/shims:/Library/Frameworks/Python.framework/Versions/3.7/bin
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Users\derek\AppData\Local\Programs\Python\Python37-32\Scripts;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Users\derek\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\derek\AppData\Local\Programs\Python\Python36\;C:\Users\derek\AppData\Local\Microsoft\WindowsApps;C:\Users\derek\AppData\Roaming\npm;C:\Users\derek\AppData\Local\atom\bin;C:\Users\derek\AppData\Local\GitHubDesktop\bin;C:\Users\derek\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\derek\AppData\Local\Yarn\bin;C:\Users\derek\AppData\Local\Android\Sdk\tools;C:\Users\derek\AppData\Local\Android\Sdk\platform-tools;
 
 Yarn version: 
-  1.13.0
+  1.12.3
 
 Node version: 
-  10.15.1
+  8.12.0
 
 Platform: 
-  darwin x64
+  win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/ReactImageMagnify: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:66255:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:129397:22)
-      at Request.emit (events.js:189:13)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:130369:10)
-      at Request.emit (events.js:189:13)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:130291:12)
-      at Object.onceWrapper (events.js:277:13)
-      at IncomingMessage.emit (events.js:194:15)
-      at endReadableNT (_stream_readable.js:1103:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: https://registry.yarnpkg.com/Fort: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65003:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129018:22)
+      at emitTwo (events.js:126:13)
+      at Request.emit (events.js:214:7)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:129990:10)
+      at emitOne (events.js:116:13)
+      at Request.emit (events.js:211:7)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:129912:12)
+      at Object.onceWrapper (events.js:313:30)
+      at emitNone (events.js:111:20)
 
 npm manifest: 
   {

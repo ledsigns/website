@@ -56,7 +56,7 @@ class App extends Component {
   render() {
     return (
       <TokenProvider>
-        <div className="main" style={{ position: "relative" }}>
+        <div className="main" style={{ position: "relative", overflowY: "hidden" }}>
           <NavBar
             categoryData={this.state.categoryData}
             productData={this.state.productData}
