@@ -1,22 +1,11 @@
 import React, { Component } from "react";
 import "../styles/molecules/AppBar.scss";
-import { VictoryBar, VictoryChart, VictoryContainer, createContainer, VictoryTooltip } from "victory";
+import { VictoryBar, VictoryChart, VictoryContainer, createContainer, VictoryTooltip, VictoryStack } from "victory";
 import { clickAmount } from "../../api/boss"
-
-// const data = [
-
-// ];
-
-// for (..) {
-//   data.push({
-//     productName:...,
-//     clickAmount:...
-//   })
-// }
 
 const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 
-export default class TestPage extends Component {
+export default class clickAmountChart extends Component {
 
   state = {
     data: []
@@ -44,14 +33,24 @@ export default class TestPage extends Component {
       }}>
         {this.state.data != [] ? (
           < div >
+            <h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Register User Amount Analysis</h3>
             <VictoryChart width={1500} height={500} domainPadding={80} containerComponent={
               <VictoryZoomVoronoiContainer
-              // labels={(d) => `${d.x}, ${d.y}`} // i want to pass this.state.data for labels function
+                allowZoom={false}
+                zoomDomain={{ x: [0, 20] }}
               />
             }>
-              <VictoryBar
-                labelComponent={<VictoryTooltip />}
-                data={this.state.data} x="productName" y="clickAmount" />
+              <VictoryStack
+                colorScale={["blue", "orange", "gold"]}
+              >
+                <VictoryBar
+                  labelComponent={<VictoryTooltip />}
+                  data={this.state.data} x="productName" y="clickAmount" />
+                <VictoryBar
+                  labelComponent={<VictoryTooltip />}
+                  data={this.state.data} x="productName" y="clickAmount" />
+
+              </VictoryStack>
             </VictoryChart>
           </div>
         ) : (
