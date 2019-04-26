@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/molecules/AppBar.scss";
-import { VictoryBar, VictoryChart, VictoryContainer, createContainer } from "victory";
+import { VictoryBar, VictoryChart, VictoryContainer, createContainer, VictoryTooltip } from "victory";
 import { clickAmount } from "../../api/boss"
 
 // const data = [
@@ -31,6 +31,7 @@ export default class TestPage extends Component {
         data: this.state.data.concat([{
           productName: responseData.productNameArr[i],
           clickAmount: responseData.clickAmountArr[i],
+          label: [`productName: ${responseData.productNameArr[i]}`, `clickAmount: ${responseData.clickAmountArr[i]}`]
         }])
       })
     }
@@ -45,10 +46,12 @@ export default class TestPage extends Component {
           < div >
             <VictoryChart width={1500} height={500} domainPadding={80} containerComponent={
               <VictoryZoomVoronoiContainer
-                labels={(data) => `${data.x}, ${data.y}`} // i want to pass this.state.data for labels function
+              // labels={(d) => `${d.x}, ${d.y}`} // i want to pass this.state.data for labels function
               />
             }>
-              <VictoryBar data={this.state.data} x="productName" y="clickAmount" />
+              <VictoryBar
+                labelComponent={<VictoryTooltip />}
+                data={this.state.data} x="productName" y="clickAmount" />
             </VictoryChart>
           </div>
         ) : (
