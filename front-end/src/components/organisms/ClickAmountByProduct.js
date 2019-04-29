@@ -8,8 +8,7 @@ const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 export default class clickAmountChart extends Component {
 
   state = {
-    data: [],
-    data2: []
+    data: []
   };
 
   async componentDidMount() {
@@ -22,10 +21,6 @@ export default class clickAmountChart extends Component {
           productName: responseData.productNameArr[i],
           clickAmount: responseData.clickAmountArr[i],
           label: [`productName: ${responseData.productNameArr[i]}`, `clickAmount: ${responseData.clickAmountArr[i]}`]
-        }]),
-        data2: this.state.data.concat([{
-          productName: responseData.productNameArr[i],
-          clickAmount: responseData.clickAmountArr[i],
         }])
       })
     }
@@ -43,15 +38,12 @@ export default class clickAmountChart extends Component {
               <VictoryZoomVoronoiContainer
                 allowZoom={false}
                 zoomDomain={{ x: [0, 20] }}
+                colorScale={["blue"]}
               />
             }>
-              <VictoryStack
-                colorScale={["blue"]}
-              >
-                <VictoryBar
-                  labelComponent={<VictoryTooltip />}
-                  data={this.state.data} x="productName" y="clickAmount" />
-              </VictoryStack>
+              <VictoryBar
+                labelComponent={<VictoryTooltip />}
+                data={this.state.data} x="productName" y="clickAmount" />
 
             </VictoryChart>
           </div>

@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
     default: true,
     type: Boolean
   },
-  created: { type: Date, default: Date.now() }
+  created: { type: Date, default: Date() }
 });
 userSchema.plugin(passportLocalMongoose, {
   usernameField: "email",

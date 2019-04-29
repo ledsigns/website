@@ -27,4 +27,22 @@ router.get("/clickAmount", async (req, res) => {
   });
 });
 
+router.get("/allByMonth", async (req, res) => {
+  var products = await global.Product.find().populate("productDetail");
+  var clicksDateArr = [];
+  for (var i = 0; i < products.length; i++) {
+    if (products[i].productDetail.clicks.length != 0) {
+      for (var q = 0; q < products[i].productDetail.clicks.length; q++) {
+        // let theDate = new Date()
+        clicksDateArr.push(products[i].productDetail.clicks[q].created)
+      }
+    }
+  }
+
+  console.log(`done?`)
+  res.json({
+    clicksDateArr: clicksDateArr,
+  });
+});
+
 module.exports = router;

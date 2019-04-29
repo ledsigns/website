@@ -7,3 +7,11 @@ export function clickAmount() {
         }
     });
 }
+
+export function allByMonth() {
+    return api.get(`/boss/allByMonth`).then(res => {
+        if (res) {
+            return res.data;
+        }
+    });
+}

@@ -22,7 +22,7 @@ const ProductSchema = mongoose.Schema({
     // required: true,
   },
   favorability: Number,
-  clicks: [Object]
+  // clicks: [Object]
 });
 
 const Product = mongoose.model("Product", ProductSchema);

@@ -1,17 +1,14 @@
 const mongoose = require("./init").mongoose;
 
 const ClickSchema = mongoose.Schema({
-  userId: [
-    {
-      User: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        // required: true,
-        default: null
-      },
-      description: String
-    }
-  ]
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    // required: true,
+    default: null
+  },
+  // description: String,
+  created: { type: Date, default: Date() }
 });
 
 const ProductDetailSchema = mongoose.Schema({
