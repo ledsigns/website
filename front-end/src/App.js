@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/organisms/NavBar";
 import DataAnalysis from "./components/pages/DataAnalysis";
+import IndividualAnlysis from "./components/organisms/individualClickAmount";
 import HomePage from "./components/pages/Home";
 import VendorsPage from "./components/pages/Vendors";
 import ProductsPage from "./components/pages/Products";
@@ -76,6 +77,7 @@ class App extends Component {
               <Route exact path="/" component={HomePage} />
               <Route exact path="/category/:id" component={VendorsPage} />
               <Route exact path="/dataAnalysis" component={DataAnalysis} />
+              <Route exact path="/dataAnalysis/:id" component={IndividualAnlysis} />
               <Route
                 exact
                 path="/product/:id"

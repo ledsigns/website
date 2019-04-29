@@ -10,7 +10,7 @@ export default class clickAmountChart extends Component {
         return (
             <>
                 <ClickAmountByMonth />
-                {/* <UserAmountChart /> */}
+                <ClickAmountChart />
             </>
         );
     }

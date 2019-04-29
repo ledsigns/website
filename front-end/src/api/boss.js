@@ -15,3 +15,11 @@ export function allByMonth() {
         }
     });
 }
+
+export function oneByMonth(id) {
+    return api.get(`/boss/oneByMonth/${id}`).then(res => {
+        if (res) {
+            return res.data;
+        }
+    });
+}

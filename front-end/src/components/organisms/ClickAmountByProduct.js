@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import "../styles/molecules/AppBar.scss";
 import { VictoryBar, VictoryChart, VictoryContainer, createContainer, VictoryTooltip, VictoryStack } from "victory";
 import { clickAmount } from "../../api/boss"
+import { withRouter } from 'react-router-dom';
 
 const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 
-export default class clickAmountChart extends Component {
+class clickAmountChart extends Component {
 
   state = {
     data: []
@@ -20,6 +21,7 @@ export default class clickAmountChart extends Component {
         data: this.state.data.concat([{
           productName: responseData.productNameArr[i],
           clickAmount: responseData.clickAmountArr[i],
+          productId: responseData.productIdArr[i],
           label: [`productName: ${responseData.productNameArr[i]}`, `clickAmount: ${responseData.clickAmountArr[i]}`]
         }])
       })
@@ -43,7 +45,19 @@ export default class clickAmountChart extends Component {
             }>
               <VictoryBar
                 labelComponent={<VictoryTooltip />}
-                data={this.state.data} x="productName" y="clickAmount" />
+                data={this.state.data} x="productName" y="clickAmount"
+                events={[
+                  {
+                    target: "data",
+                    eventHandlers: {
+                      onClick: () => {
+                        let path = "abc";
+                        this.props.history.push(path);
+                      }
+                    }
+                  }
+                ]}
+              />
 
             </VictoryChart>
           </div>
@@ -55,3 +69,5 @@ export default class clickAmountChart extends Component {
     );
   }
 }
+
+export default withRouter(clickAmountChart);
