@@ -4,7 +4,8 @@ import { VictoryBar, VictoryChart, VictoryContainer, createContainer, VictoryToo
 import { allByMonth } from "../../api/boss"
 
 const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
-const Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',]
+const Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',]
+const nextYrMonth = ['2020 Jan', '2020 Feb', '2020 Mar', '2020 Apr', '2020 May', '2020 Jun', '2020 Jul', '2020 Aug', '2020 Sep', '2020 Oct', '2020 Nov', '2020 Dec',]
 
 export default class clickAmountChart extends Component {
 
@@ -36,9 +37,19 @@ export default class clickAmountChart extends Component {
         for (var i = 0; i < Month.length; i++) {
             this.setState({
                 data: this.state.data.concat([{
-                    Month: Month[i],
+                    Month: "2019 " + Month[i],
                     clickAmount: clickAmountArr[i],
-                    label: [`Month: ${Month[i]}`, `clickAmount: ${clickAmountArr[i]}`]
+                    label: [`Month: ${"2019 " + Month[i]}`, `clickAmount: ${clickAmountArr[i]}`]
+                }])
+            })
+        }
+
+        for (var i = 0; i < nextYrMonth.length; i++) {
+            this.setState({
+                data: this.state.data.concat([{
+                    Month: nextYrMonth[i],
+                    clickAmount: 0,
+                    label: [`Month: ${"2029 " + Month[i]}`, `clickAmount: ${clickAmountArr[i]}`]
                 }])
             })
         }
