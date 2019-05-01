@@ -43,7 +43,7 @@ export default class clickAmountChart extends Component {
                 data: this.state.data.concat([{
                     Month: "2019 " + Month[i],
                     clickAmount: clickAmountArr[i],
-                    label: [`Month: ${"2019 " + Month[i]}`, `clickAmount: ${clickAmountArr[i]}`]
+                    label: [`Month: ${"2019 " + Month[i]}`, `New Registered Users: ${clickAmountArr[i]}`]
                 }])
             })
         }
@@ -53,7 +53,7 @@ export default class clickAmountChart extends Component {
                 data: this.state.data.concat([{
                     Month: nextYrMonth[i],
                     clickAmount: 0,
-                    label: [`Month: ${"2029 " + Month[i]}`, `clickAmount: ${clickAmountArr[i]}`]
+                    label: [`Month: ${"2020 " + Month[i]}`, `New Registered Users: ${0}`]
                 }])
             })
         }

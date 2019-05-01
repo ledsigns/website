@@ -11,7 +11,7 @@ import Fade from "@material-ui/core/Fade";
 
 const elements = [
   {
-    img: "http://www.unilumin.com/upload/Banner/userfaceIII.jpg",
+    img: "http://www.unilumin.com/upload/Banner/utile3banner.jpg",
     caption: "Hai"
   },
   {
@@ -165,7 +165,7 @@ export default class HomePage extends Component {
             textAlign: "center"
           }}
         >
-          <h2>SPECIALISED IN LED SOLUTIONS</h2>
+          <h2>LED SIGNS WHERE THE HEARTY ILLUMINATION BEGINS</h2>
           <h6>Innovative & Functional</h6>
           <p>
             With our dedicated team with comprehensive knowledge in LED
@@ -273,8 +273,8 @@ export default class HomePage extends Component {
             </div>
           </Fade>
         ) : (
-          false
-        )}
+            false
+          )}
         <div
           style={{
             width: "100%",

@@ -22,7 +22,7 @@ class clickAmountChart extends Component {
           productName: responseData.productNameArr[i],
           clickAmount: responseData.clickAmountArr[i],
           productId: responseData.productIdArr[i],
-          label: [`productName: ${responseData.productNameArr[i]}`, `clickAmount: ${responseData.clickAmountArr[i]}`]
+          label: [`Product Name: ${responseData.productNameArr[i]}`, `Click Amount: ${responseData.clickAmountArr[i]}`]
         }])
       })
     }
