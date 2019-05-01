@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ClickAmountChart from '../organisms/ClickAmountByProduct'
-import UserAmountChart from '../organisms/UserAmountChart'
 import ClickAmountByMonth from '../organisms/ClickAmountByMonth'
+import NewUserByMonth from '../organisms/NewUserByMonth'
+
 
 export default class clickAmountChart extends Component {
 
@@ -11,6 +12,7 @@ export default class clickAmountChart extends Component {
             <>
                 <ClickAmountByMonth />
                 <ClickAmountChart />
+                <NewUserByMonth />
             </>
         );
     }

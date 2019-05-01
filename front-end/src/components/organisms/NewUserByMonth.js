@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/molecules/AppBar.scss";
-import { VictoryBar, VictoryChart, VictoryContainer, createContainer, VictoryTooltip, VictoryStack } from "victory";
-import { allByMonth } from "../../api/boss"
+import { VictoryLine, VictoryChart, VictoryContainer, createContainer, VictoryTooltip, VictoryStack } from "victory";
+import { userByMonth } from "../../api/boss"
 
 const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 const Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',]
@@ -10,19 +10,23 @@ const nextYrMonth = ['2020 Jan', '2020 Feb', '2020 Mar', '2020 Apr', '2020 May',
 export default class clickAmountChart extends Component {
 
     state = {
-        data: []
-
+        data: [],
+        userAmount: []
     };
 
     async componentDidMount() {
-        let responseData = await allByMonth();
-        console.log(responseData)
+        let responseData = await userByMonth();
+        let userAmount = responseData.users.length;
+
+        this.setState({ userAmount: userAmount })
+
+        console.log(responseData.users)
 
         var clickAmountArr = new Array(12).fill(0);
 
-        for (var i = 0; i < responseData.clicksDateArr.length; i++) {
+        for (var i = 0; i < responseData.users.length; i++) {
             try {
-                let converted = new Date(responseData.clicksDateArr[i]);
+                let converted = new Date(responseData.users[i].created);
                 let monthName = converted.toString().slice(4, 7)
                 let index = Month.indexOf(monthName)
                 clickAmountArr[index] += 1
@@ -63,7 +67,13 @@ export default class clickAmountChart extends Component {
             }}>
                 {this.state.data != [] ? (
                     < div >
-                        <h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Click Amount By Month</h3>
+                        <h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>New User By Month</h3>
+                        <h5 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            Current Registered User :
+                            <h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                {this.state.userAmount}
+                            </h3>
+                        </h5>
                         <VictoryChart width={1500} height={500} domainPadding={80} containerComponent={
                             <VictoryZoomVoronoiContainer
                                 allowZoom={false}
@@ -71,9 +81,9 @@ export default class clickAmountChart extends Component {
                                 colorScale={["blue"]}
                             />
                         }>
-                            <VictoryBar
+                            <VictoryLine
                                 style={{
-                                    data: { fill: "tomato" }
+                                    data: { stroke: "orange" }
                                 }}
                                 labelComponent={<VictoryTooltip />}
                                 data={this.state.data} x="Month" y="clickAmount" />

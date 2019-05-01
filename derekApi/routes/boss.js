@@ -65,5 +65,15 @@ router.get("/oneByMonth/:id", async (req, res) => {
   });
 });
 
+//for new register user chart
+router.get("/userByMonth", async (req, res) => {
+  var users = await global.User.find();
+
+
+  console.log(`done?`)
+  res.json({
+    users: users,
+  });
+});
 
 module.exports = router;

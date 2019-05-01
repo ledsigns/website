@@ -44,13 +44,17 @@ class clickAmountChart extends Component {
               />
             }>
               <VictoryBar
+                style={{
+                  data: { fill: "blue" }
+                }}
                 labelComponent={<VictoryTooltip />}
                 data={this.state.data} x="productName" y="clickAmount"
                 events={[
                   {
                     target: "data",
                     eventHandlers: {
-                      onClick: () => {
+                      onClick: (abc) => {
+                        console.log(abc.target)
                         let path = "abc";
                         this.props.history.push(path);
                       }

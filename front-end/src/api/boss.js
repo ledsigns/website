@@ -23,3 +23,11 @@ export function oneByMonth(id) {
         }
     });
 }
+
+export function userByMonth() {
+    return api.get(`/boss/userByMonth`).then(res => {
+        if (res) {
+            return res.data;
+        }
+    });
+}
