@@ -71,6 +71,9 @@ export default class clickAmountChart extends Component {
                             />
                         }>
                             <VictoryBar
+                                style={{
+                                    data: { fill: "blue" }
+                                }}
                                 labelComponent={<VictoryTooltip />}
                                 data={this.state.data} x="Month" y="clickAmount" />
 

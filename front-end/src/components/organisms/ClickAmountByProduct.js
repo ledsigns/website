@@ -66,7 +66,7 @@ class clickAmountChart extends Component {
                               console.log(`props is` + JSON.stringify(props.index))
                               console.log(`datum is` + JSON.stringify(datum.data[props.index]))
                               let path = datum.data[props.index].productId
-                              this.props.history.push(path);
+                              this.props.history.push('dataAnalysis/' + path);
                             }
                           }
                         ]

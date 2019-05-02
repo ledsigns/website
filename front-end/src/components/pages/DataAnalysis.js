@@ -10,9 +10,9 @@ export default class clickAmountChart extends Component {
     render() {
         return (
             <>
-                {/* <ClickAmountByMonth /> */}
+                <ClickAmountByMonth />
                 <ClickAmountChart />
-                {/* <NewUserByMonth /> */}
+                <NewUserByMonth />
             </>
         );
     }
