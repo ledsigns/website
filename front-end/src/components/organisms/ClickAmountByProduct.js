@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import "../styles/molecules/AppBar.scss";
-import { VictoryBar, VictoryChart, VictoryContainer, createContainer, VictoryTooltip, VictoryStack } from "victory";
+import { VictoryBar, VictoryChart, createContainer, VictoryTooltip, VictoryAxis } from "victory";
 import { clickAmount } from "../../api/boss"
 import { withRouter } from 'react-router-dom';
 
 const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
+const JSON = require('circular-json');
 
 class clickAmountChart extends Component {
+
+  // constructor() {
+  //   this.onClick = this.onClick.bind(this);
+  // }
+
 
   state = {
     data: []
@@ -53,15 +59,26 @@ class clickAmountChart extends Component {
                   {
                     target: "data",
                     eventHandlers: {
-                      onClick: (abc) => {
-                        console.log(abc.target)
-                        let path = "abc";
-                        this.props.history.push(path);
+                      onClick: (props, datum, d) => {
+                        return [
+                          {
+                            mutation: (props) => {
+                              console.log(`props is` + JSON.stringify(props.index))
+                              console.log(`datum is` + JSON.stringify(datum.data[props.index]))
+                              let path = datum.data[props.index].productId
+                              this.props.history.push(path);
+                            }
+                          }
+                        ]
                       }
                     }
                   }
                 ]}
               />
+              {/* <VictoryAxis
+                style={{ tickLabels: { angle: 45 } }}
+              /> */}
+              {/* the standby method to rotate x label pls don't delete*/}
 
             </VictoryChart>
           </div>
