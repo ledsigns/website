@@ -9,7 +9,24 @@ export function signIn({ email, password }) {
       password: password
     })
     .then(res => {
+      console.log(res);
+      console.log(res.error);
       return res.data;
+    })
+    .catch(error => {
+      throw Error(error.response.data.error);
+    });
+}
+export function test({ email, password }) {
+  return api
+    .post(`/auth/test`)
+    .then(res => {
+      console.log(res);
+      console.log(res.error);
+      console.log("data");
+      console.log(res);
+      return;
+      // return res.data;
     })
     .catch(error => {
       throw Error(error.response.data.error);

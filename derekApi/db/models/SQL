@@ -1,0 +1,33 @@
+user {
+    userId
+    username
+    salt
+    hash
+}
+profile {
+    firstname
+    lastname
+    address
+    phonenumber
+}
+product {
+    product_id
+    owner_id
+    product_details
+    images
+    price
+    stock
+    available_until
+}
+order {
+    order_id
+    buyer_id
+    date_created
+    status
+}
+order_products {
+    order_id
+    product_id
+    quantity
+}
+
