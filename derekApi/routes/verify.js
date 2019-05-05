@@ -1,12 +1,13 @@
 const express = require("express");
 const authMiddleware = require("../middleware/auth");
-const messagebird = require("messagebird")("LRNfoknw1sJZC7Bk9oBdEwbkr");
+const messagebird = require("messagebird")("BP8597PUJ0NoQeCrSed7AljoN");
 
 const router = express.Router();
 
 router.post("/send", async (req, res) => {
+  // console.log(req.body);
   messagebird.verify.create(
-    +6583443007,
+    `${req.body.number}`,
     {
       template: "Your token is %token."
     },

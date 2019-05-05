@@ -1,6 +1,7 @@
 const sls = require("serverless-http");
 const express = require("express");
 const path = require("path");
+// const compression = require("compression");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("./db/dbInit");
@@ -12,8 +13,9 @@ const authMiddleware = require("./middleware/auth");
 const server = express();
 
 // parse application/json
+// server.use(compression()); //Compress all routes
 server.use(bodyParser.json());
-
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(

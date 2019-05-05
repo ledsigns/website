@@ -16,6 +16,16 @@ import {
 } from "mdbreact";
 
 export default class LoginPage extends Component {
+  state = {
+    token: null,
+    createAccount: true,
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    number: "",
+    loading: false
+  };
   constructor(props) {
     super(props);
     this.onSignIn = this.onSignIn.bind(this);
@@ -33,8 +43,11 @@ export default class LoginPage extends Component {
 
   //handle user input and set password and email state
   onInputChange = (e, newValue) => {
+    console.log("e.target");
+    console.log(this.state.email);
+    console.log(e.target.value);
     this.setState({
-      [e.target.id]: newValue
+      [e.target.id]: e.target.value
     });
   };
 
@@ -49,11 +62,13 @@ export default class LoginPage extends Component {
   }
 
   onSignIn = async context => {
+    console.log("this.state.email");
+    console.log(this.state.email);
     const email = this.state.email;
+    console.log("this.state.password");
+    console.log(this.state.password);
     const password = this.state.password;
 
-    console.log(context);
-    // context.context("123456");
     authAPI
       .signIn({ email, password })
       .then(json => {
@@ -70,20 +85,13 @@ export default class LoginPage extends Component {
   };
 
   onSignRegister = async context => {
-    let res = await authAPI.send();
-    this.setState({ token: res.data.id });
-    const { email, password, firstName, lastName } = this.state;
+    let res = await authAPI.send(this.state.number);
     authAPI
-      .register({
-        email,
-        password,
-        firstName,
-        lastName
-      })
+      .register(this.state)
       .then(json => {
         context.changeToken(json.token);
         localStorage.setItem("token", json.token);
-        // this.setToken(json.token);
+        this.setToken(true);
       })
       .catch(error => {
         // console.log(error);
@@ -107,6 +115,7 @@ export default class LoginPage extends Component {
         />
       );
     }
+    console.log(this.state);
     return (
       <div
         style={{
@@ -159,7 +168,7 @@ export default class LoginPage extends Component {
                               <div className="text-center py-4 mt-3">
                                 <MDBBtn
                                   className="login-button"
-                                  label="Register"
+                                  label="Login"
                                   onClick={() => this.onSignIn(context)}
                                   color="cyan"
                                   type="submit"
@@ -182,35 +191,6 @@ export default class LoginPage extends Component {
                               <p className="h4 text-center py-4">
                                 Create Account
                               </p>
-                              {/* <TextField
-                                  id="number"
-                                  floatingLabelText="Mobile Number"
-                                  fullWidth={true}
-                                  required
-                                  onChange={this.onInputChange}
-                                  onEnterKeyDown={() => this.onRegister()}
-                                  value={this.state.number}
-                                  hintText="Mobile Number"
-                                  type="number"
-                                />
-                                <TextField
-                                  id="firstName"
-                                  floatingLabelText="First Name"
-                                  fullWidth={true}
-                                  onChange={this.onInputChange}
-                                  onEnterKeyDown={() => this.onRegister()}
-                                  value={this.state.firstName}
-                                  hintText="First Name"
-                                />
-                                <TextField
-                                  id="lastName"
-                                  floatingLabelText="Last Name"
-                                  fullWidth={true}
-                                  onChange={this.onInputChange}
-                                  onEnterKeyDown={() => this.onRegister()}
-                                  value={this.state.lastName}
-                                  hintText="Last Name"
-                                /> */}
                               <MDBInput
                                 label="Email"
                                 icon="envelope"
@@ -260,7 +240,7 @@ export default class LoginPage extends Component {
                                 id="firstName"
                                 required
                                 onChange={this.onInputChange}
-                                value={this.state.number}
+                                value={this.state.firstname}
                                 hintText="First Name"
                                 type="text"
                                 label="First Name"

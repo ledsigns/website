@@ -9,6 +9,7 @@ router
   // .get((req, res) => {
   //     res.json({ hello: "hai" })
   // })
+
   .get(authMiddleware.authenticateJWT, (req, res) => {
     if (req.user) {
       res.json({ user: req.user });
@@ -18,7 +19,10 @@ router
   })
   // Sign in
   .post(authMiddleware.authenticateSignIn, authMiddleware.signTokenHandler);
-
+// Sign in
+router.post("/test", authMiddleware.authenticateJWT, (req, res) => {
+  res.send("hello");
+});
 // Register
 router.post(
   "/register",
